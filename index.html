@@ -21,7 +21,6 @@
 
         /* --- Dynamic Motion Design Classes --- */
         
-        /* Reveal on Scroll Animations */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -44,7 +43,6 @@
             transform: translateX(0);
         }
 
-        /* Floating Animation for Hero Images */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
@@ -55,7 +53,6 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        /* Background Pulse */
         @keyframes pulse-slow {
             0%, 100% { transform: scale(1); opacity: 0.3; }
             50% { transform: scale(1.1); opacity: 0.5; }
@@ -77,40 +74,65 @@
         /* Brand Slider Animation */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 7)); }
+            100% { transform: translateX(calc(-280px * 8)); }
         }
 
         .slider {
             background: white;
-            height: 100px;
+            height: 140px;
             margin: auto;
             overflow: hidden;
             position: relative;
             width: 100%;
+            display: flex;
+            align-items: center;
         }
 
         .slide-track {
-            animation: scroll 30s linear infinite;
+            animation: scroll 45s linear infinite;
             display: flex;
-            width: calc(250px * 14);
+            width: calc(280px * 16);
         }
 
         .slide {
-            height: 100px;
-            width: 250px;
+            height: 120px;
+            width: 280px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #e2e8f0;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(100%);
+            opacity: 0.4;
+            border-right: 1px solid #f3f4f6;
         }
 
         .slide:hover {
-            color: #3b82f6;
+            filter: grayscale(0%);
+            opacity: 1;
+            background: rgba(59, 130, 246, 0.05);
+            transform: scale(1.05);
+            color: #1e3a8a;
+        }
+
+        .slide i {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .brand-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-models {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 2px;
+            letter-spacing: 0.02em;
         }
 
         /* --- Premium Price Tag Styling --- */
@@ -134,7 +156,6 @@
             margin-right: 2px;
         }
 
-        /* FAQ Accordion Styling */
         .faq-item {
             border-bottom: 1px solid #e5e7eb;
         }
@@ -210,12 +231,90 @@
     </section>
 
     <!-- Brand Slider Section -->
-    <div class="slider border-b border-gray-100 py-2">
+    <div class="slider border-b border-gray-100">
         <div class="slide-track">
-            <div class="slide">Toyota</div><div class="slide">Honda</div><div class="slide">Perodua</div>
-            <div class="slide">Proton</div><div class="slide">Nissan</div><div class="slide">BMW</div><div class="slide">Mercedes</div>
-            <div class="slide">Toyota</div><div class="slide">Honda</div><div class="slide">Perodua</div>
-            <div class="slide">Proton</div><div class="slide">Nissan</div><div class="slide">BMW</div><div class="slide">Mercedes</div>
+            <!-- Set 1 -->
+            <div class="slide">
+                <i class="fas fa-car"></i>
+                <span class="brand-name">Perodua</span>
+                <span class="brand-models">Axia • Myvi • Bezza • Alza</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-shield-virus"></i>
+                <span class="brand-name">Proton</span>
+                <span class="brand-models">Saga • Persona • X50 • X70</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-certificate"></i>
+                <span class="brand-name">Toyota</span>
+                <span class="brand-models">Vios • Yaris • Corolla • Hilux</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-check-circle"></i>
+                <span class="brand-name">Honda</span>
+                <span class="brand-models">City • Civic • HR-V • CR-V</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-bolt"></i>
+                <span class="brand-name">Nissan</span>
+                <span class="brand-models">Almera • Serena • X-Trail</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-crown"></i>
+                <span class="brand-name">BMW</span>
+                <span class="brand-models">3 Series • 5 Series • X1</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-star"></i>
+                <span class="brand-name">Mercedes</span>
+                <span class="brand-models">C-Class • E-Class • GLA</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-leaf"></i>
+                <span class="brand-name">Mazda</span>
+                <span class="brand-models">Mazda 3 • CX-5 • CX-30</span>
+            </div>
+            <!-- Set 2 (Duplicates) -->
+            <div class="slide">
+                <i class="fas fa-car"></i>
+                <span class="brand-name">Perodua</span>
+                <span class="brand-models">Axia • Myvi • Bezza • Alza</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-shield-virus"></i>
+                <span class="brand-name">Proton</span>
+                <span class="brand-models">Saga • Persona • X50 • X70</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-certificate"></i>
+                <span class="brand-name">Toyota</span>
+                <span class="brand-models">Vios • Yaris • Corolla • Hilux</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-check-circle"></i>
+                <span class="brand-name">Honda</span>
+                <span class="brand-models">City • Civic • HR-V • CR-V</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-bolt"></i>
+                <span class="brand-name">Nissan</span>
+                <span class="brand-models">Almera • Serena • X-Trail</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-crown"></i>
+                <span class="brand-name">BMW</span>
+                <span class="brand-models">3 Series • 5 Series • X1</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-star"></i>
+                <span class="brand-name">Mercedes</span>
+                <span class="brand-models">C-Class • E-Class • GLA</span>
+            </div>
+            <div class="slide">
+                <i class="fas fa-leaf"></i>
+                <span class="brand-name">Mazda</span>
+                <span class="brand-models">Mazda 3 • CX-5 • CX-30</span>
+            </div>
         </div>
     </div>
 
@@ -391,8 +490,6 @@
 
                 <form class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-gray-100">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                        
-                        <!-- Column 1: Personal Info -->
                         <div class="space-y-6">
                             <h3 class="text-lg font-black text-blue-900 uppercase tracking-wider border-b border-blue-100 pb-2 flex items-center">
                                 <i class="fas fa-user-circle mr-2 text-blue-500"></i> Personal Info
@@ -406,8 +503,6 @@
                                 <option>SUV (RM200/day)</option>
                             </select>
                         </div>
-
-                        <!-- Column 2: Date & Time -->
                         <div class="space-y-6">
                             <h3 class="text-lg font-black text-blue-900 uppercase tracking-wider border-b border-blue-100 pb-2 flex items-center">
                                 <i class="fas fa-calendar-alt mr-2 text-blue-500"></i> Schedule
@@ -420,32 +515,18 @@
                                 <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">Return Date</label>
                                 <input type="date" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none">
                             </div>
-                            <div>
-                                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">Pickup Time</label>
-                                <input type="time" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none">
-                            </div>
                         </div>
-
-                        <!-- Column 3: Locations -->
                         <div class="space-y-6">
                             <h3 class="text-lg font-black text-blue-900 uppercase tracking-wider border-b border-blue-100 pb-2 flex items-center">
                                 <i class="fas fa-map-marker-alt mr-2 text-blue-500"></i> Route
                             </h3>
-                            <div class="relative">
-                                <i class="fas fa-map-pin absolute left-4 top-1/2 -translate-y-1/2 text-blue-400"></i>
-                                <input type="text" placeholder="Pickup Location Address" class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition">
-                            </div>
-                            <div class="relative">
-                                <i class="fas fa-flag-checkered absolute left-4 top-1/2 -translate-y-1/2 text-blue-400"></i>
-                                <input type="text" placeholder="Drop-off Location Address" class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-10 pr-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition">
-                            </div>
-                            <textarea placeholder="Special Instructions (Optional)" rows="2" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition resize-none"></textarea>
+                            <input type="text" placeholder="Pickup Location Address" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition">
+                            <input type="text" placeholder="Drop-off Location Address" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none transition">
                         </div>
                     </div>
-                    <button type="button" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-blue-800 transition-all hover:tracking-[0.4em] flex items-center justify-center">
+                    <button type="button" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-blue-800 transition-all flex items-center justify-center">
                         <i class="fas fa-paper-plane mr-3"></i> Submit Booking Request
                     </button>
-                    <p class="text-center text-[10px] text-gray-400 mt-4 uppercase tracking-widest font-bold">Our team will contact you within 30 minutes for confirmation.</p>
                 </form>
             </div>
         </div>
@@ -455,33 +536,23 @@
     <section id="feedback" class="py-24 bg-blue-900 text-white overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl font-black uppercase tracking-widest">Feedback</h2>
-                <div class="h-1 w-20 bg-blue-400 mx-auto mt-4"></div>
+                <h2 class="text-3xl font-black uppercase tracking-widest text-blue-400">Feedback</h2>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal" style="transition-delay: 0.1s;">
+                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal">
                     <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 leading-relaxed">"Best rental deal in KL! Smooth and affordable."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold mr-3">M</div>
-                        <div><h4 class="font-bold">Mei Lin</h4><p class="text-blue-300 text-xs">Kuala Lumpur</p></div>
-                    </div>
+                    <p class="italic mb-6">"Best rental deal in KL! Smooth and affordable."</p>
+                    <h4 class="font-bold">Mei Lin</h4>
                 </div>
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal" style="transition-delay: 0.2s;">
+                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal">
                     <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 leading-relaxed">"No hidden fees, great customer service."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold mr-3">J</div>
-                        <div><h4 class="font-bold">Joelyn</h4><p class="text-blue-300 text-xs">Penang</p></div>
-                    </div>
+                    <p class="italic mb-6">"No hidden fees, great customer service."</p>
+                    <h4 class="font-bold">Joelyn</h4>
                 </div>
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal" style="transition-delay: 0.3s;">
+                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 backdrop-blur-sm reveal">
                     <div class="text-yellow-400 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 leading-relaxed">"Reliable for all my client meetings."</p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold mr-3">B</div>
-                        <div><h4 class="font-bold">Ben Li</h4><p class="text-blue-300 text-xs">Johor Bahru</p></div>
-                    </div>
+                    <p class="italic mb-6">"Reliable for all my client meetings."</p>
+                    <h4 class="font-bold">Ben Li</h4>
                 </div>
             </div>
         </div>
@@ -491,53 +562,25 @@
     <section id="faq" class="py-24 bg-white">
         <div class="container mx-auto px-6 max-w-4xl">
             <div class="text-center mb-16 reveal">
-                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Got Questions?</span>
                 <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase">Frequently Asked</h2>
-                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
             </div>
-
             <div class="space-y-4 reveal">
-                <!-- FAQ Item 1 -->
-                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300">
-                    <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
                         <span class="text-lg font-bold text-blue-900">What documents do I need to rent a car?</span>
-                        <i class="fas fa-chevron-down text-blue-500 transition-transform duration-300 faq-icon"></i>
+                        <i class="fas fa-chevron-down text-blue-500 transition-transform faq-icon"></i>
                     </button>
                     <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 leading-relaxed">You will need a valid Malaysian driving license (or international permit), an IC or Passport for identification, and a latest utility bill for address verification.</p>
+                        <p class="pb-6 text-gray-600">You will need a valid Malaysian driving license, an IC or Passport, and a latest utility bill for verification.</p>
                     </div>
                 </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300">
-                    <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
                         <span class="text-lg font-bold text-blue-900">Is there a security deposit?</span>
-                        <i class="fas fa-chevron-down text-blue-500 transition-transform duration-300 faq-icon"></i>
+                        <i class="fas fa-chevron-down text-blue-500 transition-transform faq-icon"></i>
                     </button>
                     <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 leading-relaxed">Yes, a refundable security deposit of RM200-RM500 (depending on car type) is required. This is returned within 3-7 working days after the car is returned in good condition.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300">
-                    <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">Can I drive the car outside of Kedah/Penang?</span>
-                        <i class="fas fa-chevron-down text-blue-500 transition-transform duration-300 faq-icon"></i>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 leading-relaxed">Yes, our cars can be driven nationwide across Peninsular Malaysia. However, we do not allow our vehicles to be driven into Thailand or Singapore without prior written approval.</p>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="faq-item bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 transition-all duration-300">
-                    <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">What happens in case of an accident?</span>
-                        <i class="fas fa-chevron-down text-blue-500 transition-transform duration-300 faq-icon"></i>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 leading-relaxed">All our cars are covered by commercial insurance. In case of an accident, please contact our 24/7 emergency hotline immediately. You may be responsible for the insurance excess amount as per your agreement.</p>
+                        <p class="pb-6 text-gray-600">Yes, a refundable security deposit of RM200-RM500 is required depending on the car type.</p>
                     </div>
                 </div>
             </div>
@@ -570,7 +613,6 @@
     </footer>
 
     <script>
-        // Scroll Reveal logic
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -579,17 +621,11 @@
         }, observerOptions);
         document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
 
-        // FAQ Toggle Logic
         function toggleFAQ(button) {
             const item = button.parentElement;
-            const isActive = item.classList.contains('active');
-            
-            // Close all other FAQs
             document.querySelectorAll('.faq-item').forEach(otherItem => {
                 if (otherItem !== item) otherItem.classList.remove('active');
             });
-
-            // Toggle current FAQ
             item.classList.toggle('active');
         }
     </script>
