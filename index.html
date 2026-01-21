@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZACHS Car Rental | Malaysia's Premier Mobility Solution</title>
+    <title>ZACHS Car Rental | Rent a Ride, Own the Road</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -19,7 +19,7 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
 
-        /* Motion Design */
+        /* --- Dynamic Motion Design Classes --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -52,15 +52,110 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .pulse-blob {
+            animation: pulse-slow 10s infinite;
+        }
+
         .card-hover:hover {
             transform: translateY(-12px) scale(1.02);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Brand Slider */
+        .hero-img-mask {
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
+
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background: #1e3a8a;
+            transform: scale(1.2);
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30, 58, 138, 0.8);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(30, 58, 138, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+
+        /* Brand Slider Animation */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-280px * 8)); }
+            100% { transform: translateX(calc(-280px * 10)); }
         }
 
         .slider {
@@ -77,7 +172,7 @@
         .slide-track {
             animation: scroll 45s linear infinite;
             display: flex;
-            width: calc(280px * 16);
+            width: calc(280px * 20);
         }
 
         .slide {
@@ -87,10 +182,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 0.4s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             filter: grayscale(100%);
             opacity: 0.4;
             border-right: 1px solid #f3f4f6;
+            cursor: pointer;
         }
 
         .slide:hover {
@@ -98,16 +194,56 @@
             opacity: 1;
             background: rgba(59, 130, 246, 0.05);
             transform: scale(1.05);
+            color: #1e3a8a;
         }
 
+        .slide i {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .brand-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-models {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 2px;
+            letter-spacing: 0.02em;
+        }
+
+        /* --- Premium Price Tag Styling --- */
         .price-tag-container {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             transform: rotate(-2deg);
+            transition: all 0.3s ease;
         }
 
+        .group:hover .price-tag-container {
+            transform: rotate(0deg) scale(1.1);
+            background: #ffffff;
+        }
+
+        .currency-symbol {
+            font-size: 0.8rem;
+            vertical-align: super;
+            margin-right: 2px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -120,6 +256,7 @@
             transform: rotate(180deg);
         }
 
+        /* Team Image Specifics */
         .team-img-wrapper {
             position: relative;
             overflow: hidden;
@@ -127,9 +264,233 @@
             aspect-ratio: 1/1;
             background: #f1f5f9;
         }
+        .team-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
         .team-card:hover img {
             transform: scale(1.1);
-            transition: 0.5s;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Warranty Badge */
+        .warranty-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Testimonials */
+        .testimonial-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .rental-type-btn.active {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        /* Hero Section Enhancements */
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 20px;
+        }
+
+        /* About Us Image Enhancement */
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 30px;
+        }
+
+        /* Image Quality Enhancement */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* Car Type Background Colors */
+        .economy-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .sedan-bg {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        .suv-bg {
+            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+        }
+
+        .luxury-bg {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+        }
+
+        .mpv-bg {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        /* New styles for goals and target users */
+        .goal-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .goal-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(30, 58, 138, 0.25);
+        }
+        
+        .goal-icon-wrapper {
+            transition: all 0.5s ease;
+        }
+        
+        .goal-card:hover .goal-icon-wrapper {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .user-card {
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .user-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(30, 58, 138, 0.15);
+        }
+        
+        .user-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .user-card:hover .user-icon {
+            transform: scale(1.2);
+        }
+        
+        .booking-step {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .booking-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            transition: all 0.4s ease;
+        }
+        
+        .booking-step:hover .step-number {
+            transform: scale(1.1);
+            background: #1e3a8a;
+            color: white;
+        }
+        
+        /* Progress bar for booking steps */
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+        
+        .progress-line-fill {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.5s ease;
+        }
+
+        /* Additional styles for new sections */
+        .safety-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .safety-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-card {
+            transition: all 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* New car-return icon */
+        .fa-car-return:before {
+            content: "\f5e1";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
         }
     </style>
 </head>
@@ -146,166 +507,121 @@
             <div class="hidden md:flex space-x-8 font-semibold text-blue-900 items-center">
                 <a href="#home" class="hover:text-blue-500 transition-colors">Home</a>
                 <a href="#about" class="hover:text-blue-500 transition-colors">About Us</a>
-                <a href="#services" class="hover:text-blue-500 transition-colors">Services</a>
+                <a href="#team" class="hover:text-blue-500 transition-colors">Our Team</a>
+                <a href="#goals" class="hover:text-blue-500 transition-colors">Our Goals</a>
+                <a href="#target-users" class="hover:text-blue-500 transition-colors">Target Users</a>
+                <a href="#booking-process" class="hover:text-blue-500 transition-colors">Booking Process</a>
+                <a href="#safety-assurance" class="hover:text-blue-500 transition-colors">Safety Assurance</a>
+                <a href="#benefits" class="hover:text-blue-500 transition-colors">Benefits</a>
                 <a href="#fleet" class="hover:text-blue-500 transition-colors">Our Fleet</a>
                 <a href="#faq" class="hover:text-blue-500 transition-colors">FAQ</a>
-                <a href="#booking" class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 shadow-md">Book Now</a>
+                <a href="#terms" class="hover:text-blue-500 transition-colors">Terms</a>
+                <a href="#testimonials" class="hover:text-blue-500 transition-colors">Reviews</a>
+                <a href="#booking" class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition transform hover:scale-105 active:scale-95 shadow-md">Book Now</a>
+            </div>
+            <button class="md:hidden text-blue-900 text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden bg-white absolute top-full left-0 right-0 shadow-lg hidden">
+            <div class="flex flex-col space-y-4 p-6">
+                <a href="#home" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Home</a>
+                <a href="#about" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">About Us</a>
+                <a href="#team" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Our Team</a>
+                <a href="#goals" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Our Goals</a>
+                <a href="#target-users" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Target Users</a>
+                <a href="#booking-process" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Booking Process</a>
+                <a href="#safety-assurance" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Safety Assurance</a>
+                <a href="#benefits" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Benefits</a>
+                <a href="#fleet" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Our Fleet</a>
+                <a href="#faq" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">FAQ</a>
+                <a href="#terms" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Terms</a>
+                <a href="#testimonials" class="hover:text-blue-500 transition-colors" onclick="toggleMobileMenu()">Reviews</a>
+                <a href="#booking" class="bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition" onclick="toggleMobileMenu()">Book Now</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg text-white py-20 lg:py-32 overflow-hidden relative">
+    <section id="home" class="gradient-bg text-white py-16 lg:py-32 overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pulse-blob -translate-y-1/2 translate-x-1/4"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl pulse-blob delay-700"></div>
+
         <div class="container mx-auto px-6 flex flex-col lg:flex-row items-center relative z-10">
             <div class="lg:w-1/2 mb-12 lg:mb-0 reveal-left active">
                 <h1 class="text-5xl lg:text-7xl font-black mb-4 uppercase tracking-tight leading-[1.1]">
-                    REDEFINING YOUR <br> TRAVEL EXPERIENCE <br> IN MALAYSIA.
+                    NEED A CAR FOR <br> YOUR TRIP OR <br> DAILY NEEDS?
                 </h1>
+                
                 <p class="text-xl md:text-2xl font-medium text-blue-100 italic mb-8 opacity-80">
                     "Rent a Ride, Own the Road"
                 </p>
+
                 <p class="text-lg text-blue-50/90 mb-10 max-w-lg leading-relaxed">
-                    Welcome to ZACHS Car Rental, where we bridge the gap between premium mobility and budget-friendly accessibility. Whether you're exploring the bustling streets of Kuala Lumpur, heading to the cooling heights of Genting, or simply need a reliable daily runner in Kedah, we provide a fleet that combines safety, performance, and unparalleled comfort.
+                    Drive More, Pay Less. The most affordable and reliable car rental service in Malaysia.
                 </p>
+
                 <div class="flex gap-4">
-                    <a href="#booking" class="bg-white text-blue-900 font-bold py-4 px-12 rounded-xl shadow-xl hover:bg-blue-50 transition transform hover:translate-y-[-4px] uppercase">
-                        START YOUR JOURNEY
+                    <a href="#booking" class="bg-white text-blue-900 font-bold py-4 px-12 rounded-xl shadow-xl text-center hover:bg-blue-50 transition transform hover:translate-y-[-4px] uppercase tracking-wider">
+                        RENT NOW
                     </a>
                 </div>
             </div>
             <div class="lg:w-1/2 flex justify-center relative reveal">
-                <div class="float-anim">
-                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&q=80&w=800" 
-                         alt="Premium Vehicle" 
-                         class="w-full h-auto rounded-[3rem] shadow-2xl">
+                <div class="float-anim w-full max-w-4xl">
+                    <div class="hero-image-wrapper">
+                        <img src="https://i.ibb.co/rffrN8xL/impressive-car-hero.jpg" 
+                             alt="Premium Luxury Car Rental - ZACHS Car Rental"
+                             loading="eager">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brand Slider -->
-    <div class="slider border-b border-gray-100">
-        <div class="slide-track">
-            <div class="slide"><i class="fas fa-car mb-2"></i><span class="font-bold">PERODUA</span></div>
-            <div class="slide"><i class="fas fa-shield-virus mb-2"></i><span class="font-bold">PROTON</span></div>
-            <div class="slide"><i class="fas fa-certificate mb-2"></i><span class="font-bold">TOYOTA</span></div>
-            <div class="slide"><i class="fas fa-check-circle mb-2"></i><span class="font-bold">HONDA</span></div>
-            <div class="slide"><i class="fas fa-bolt mb-2"></i><span class="font-bold">NISSAN</span></div>
-            <div class="slide"><i class="fas fa-crown mb-2"></i><span class="font-bold">BMW</span></div>
-            <div class="slide"><i class="fas fa-star mb-2"></i><span class="font-bold">MERCEDES</span></div>
-            <div class="slide"><i class="fas fa-leaf mb-2"></i><span class="font-bold">MAZDA</span></div>
-            <!-- Duplicates -->
-            <div class="slide"><i class="fas fa-car mb-2"></i><span class="font-bold">PERODUA</span></div>
-            <div class="slide"><i class="fas fa-shield-virus mb-2"></i><span class="font-bold">PROTON</span></div>
-            <div class="slide"><i class="fas fa-certificate mb-2"></i><span class="font-bold">TOYOTA</span></div>
-            <div class="slide"><i class="fas fa-check-circle mb-2"></i><span class="font-bold">HONDA</span></div>
-            <div class="slide"><i class="fas fa-bolt mb-2"></i><span class="font-bold">NISSAN</span></div>
-            <div class="slide"><i class="fas fa-crown mb-2"></i><span class="font-bold">BMW</span></div>
-            <div class="slide"><i class="fas fa-star mb-2"></i><span class="font-bold">MERCEDES</span></div>
-            <div class="slide"><i class="fas fa-leaf mb-2"></i><span class="font-bold">MAZDA</span></div>
-        </div>
-    </div>
-
     <!-- About Us Section -->
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-20 bg-white overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="lg:w-1/2 reveal-left">
                     <div class="relative group">
-                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=800" 
-                             alt="About ZACHS" class="rounded-3xl shadow-xl z-10 relative">
-                        <div class="absolute -top-6 -left-6 w-full h-full bg-blue-100 rounded-3xl -z-10"></div>
+                        <div class="about-image-wrapper">
+                            <img src="https://i.ibb.co/1GWrtxpp/about-us-premium-car.jpg" 
+                                 alt="Premium Car Rental Service - ZACHS About Us"
+                                 loading="lazy">
+                        </div>
+                        <div class="absolute -top-6 -left-6 w-full h-full bg-blue-100 rounded-3xl -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500"></div>
+                        <div class="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-2xl shadow-lg z-20 hidden md:block group-hover:bg-blue-500 transition-colors">
+                            <p class="text-2xl font-bold">100%</p>
+                            <p class="text-xs uppercase tracking-wider">Trusted Service</p>
+                        </div>
                     </div>
                 </div>
                 <div class="lg:w-1/2 reveal">
-                    <h2 class="text-sm font-bold text-blue-500 mb-2 uppercase tracking-widest">A Legacy of Quality</h2>
-                    <h3 class="text-4xl font-bold text-blue-900 mb-6">The Story of ZACHS Car Rental</h3>
-                    <div class="space-y-6 text-gray-600 leading-relaxed">
+                    <h2 class="text-sm font-bold text-blue-500 mb-2 uppercase tracking-widest">Founded in 2025</h2>
+                    <h3 class="text-4xl font-bold text-blue-900 mb-6 leading-tight">About Us: Empowering Malaysians with Quality Transportation</h3>
+                    <div class="space-y-4 text-gray-600 mb-8 leading-relaxed">
                         <p>
-                            ZACHS Car Rental was established in early 2025 with a clear vision: to revolutionize the car rental landscape in Malaysia by providing a seamless, digitally-driven experience combined with old-school hospitality. Our journey began in Sungai Petani, Kedah, where our founders noticed a significant gap in the market—local travelers were either stuck with expensive multinational corporations or unreliable backyard operators.
+                            Founded in 2025, ZACHS Car Rental was born out of a simple yet powerful idea: every Malaysian deserves access to quality transportation without breaking the bank. From our humble beginnings with a small fleet in Sungai Petani, we have expanded nationwide, driven by a commitment to transparency, value, and ease of use.
                         </p>
                         <p>
-                            We decided to build something different. By focusing on a "Customer-First" philosophy, we invested heavily in a fleet that is not only modern but meticulously maintained. Every vehicle in our fleet undergoes a rigorous 50-point safety inspection before every single rental, ensuring that when you turn the key, you have absolute peace of mind. 
+                            Recognizing the growing need for flexible mobility solutions—whether for daily commutes, weekend getaways, or business travel—we set out to build a service that prioritizes the customer. We serve thousands of satisfied customers who trust us for their travel needs, ensuring that our cars are always clean, powerful, and ready for the road.
                         </p>
                         <p>
-                            Today, ZACHS has grown into a household name for those who value transparency. We pioneered the "No Hidden Fee" guarantee in the region, ensuring that the price you see on your screen is exactly what you pay. No administrative surcharges, no unexpected insurance fees, and no "cleaning" penalties. Our growth is fueled by thousands of returning customers who appreciate our dedication to keeping Malaysia moving.
-                        </p>
-                        <p>
-                            As we look toward the future, we are expanding our operations to include more electric vehicle (EV) options and enhancing our mobile booking platform to ensure that renting a car is as easy as ordering a meal. We aren't just renting cars; we are enabling adventures, facilitating business growth, and helping families create memories that last a lifetime.
+                            We pride ourselves on having no hidden fees and offering a price match guarantee. Your safety is our priority, which is why we provide comprehensive warranty coverage for mechanical faults and 24/7 roadside assistance.
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed Services Section -->
-    <section id="services" class="py-24 bg-blue-50 border-y border-blue-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-black text-blue-900 mb-4 uppercase">Our Comprehensive Services</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">More than just a rental company, we are your comprehensive mobility partner in Malaysia.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-clock"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 hover:border-blue-300 transition-colors">
+                            <h4 class="font-bold text-blue-900 mb-2 uppercase tracking-wide"><i class="fas fa-bullseye text-blue-500 mr-2"></i> Our Mission</h4>
+                            <p class="text-sm text-gray-600">To empower Malaysians with affordable, reliable, and hassle-free car rental services that enable personal and professional growth.</p>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 hover:border-blue-300 transition-colors">
+                            <h4 class="font-bold text-blue-900 mb-2 uppercase tracking-wide"><i class="fas fa-eye text-blue-500 mr-2"></i> Our Vision</h4>
+                            <p class="text-sm text-gray-600">To become Malaysia's most trusted and customer-centric car rental brand, setting the standard for excellence in mobility.</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">Short-Term Daily Rentals</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Perfect for quick errands, weekend getaways, or visiting family. Our daily rental service offers maximum flexibility with 24-hour rental cycles. We provide instant booking confirmation and a wide variety of vehicles ranging from fuel-efficient hatchbacks to luxury sedans.
-                    </p>
-                </div>
-                <!-- Service 2 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal" style="transition-delay: 0.1s;">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">Corporate & Business Leasing</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        We provide tailored solutions for businesses needing long-term mobility without the burden of ownership. Our corporate packages include full maintenance, road tax management, and replacement vehicle guarantees, allowing you to focus on your core business operations.
-                    </p>
-                </div>
-                <!-- Service 3 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-plane-arrival"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">Airport Meet & Greet</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Arriving at KLIA, Penang International, or Alor Setar? Our dedicated team will meet you at the arrival hall. No more waiting in long queues at rental counters. We bring the car directly to the terminal, complete the paperwork in minutes, and get you on your way.
-                    </p>
-                </div>
-                <!-- Service 4 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal" style="transition-delay: 0.3s;">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">24/7 Emergency Support</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Roadside emergencies are unpredictable, but our response isn't. Every ZACHS rental comes with round-the-clock roadside assistance. Whether it's a flat tire, a dead battery, or a mechanical fault, our nationwide network of mechanics is just one phone call away.
-                    </p>
-                </div>
-                <!-- Service 5 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal" style="transition-delay: 0.4s;">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">One-Way Rentals</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Planning a road trip from the North to the South? We offer flexible one-way rental options. Pick up your car in one city and drop it off at any of our designated hubs across Peninsular Malaysia. It's the ultimate solution for travelers seeking a cross-country adventure.
-                    </p>
-                </div>
-                <!-- Service 6 -->
-                <div class="p-8 bg-white rounded-3xl shadow-sm border border-blue-100 reveal" style="transition-delay: 0.5s;">
-                    <div class="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-4">Premium Add-ons</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Customize your ride with our range of add-ons. We offer ISOFIX-compliant child seats, GPS navigation units for remote areas, and unlimited mileage packages. Our goal is to ensure that your specific travel needs are met with high-quality equipment.
-                    </p>
                 </div>
             </div>
         </div>
@@ -315,67 +631,767 @@
     <section id="team" class="py-24 bg-gray-50 border-y border-gray-200">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Expert Team</span>
-                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">The Faces Behind ZACHS</h2>
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Leadership Team</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Our Leadership</h2>
                 <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
-                <!-- Team Member 1: Hisyam -->
+                <!-- Team Member 1: Muhd Hisyam (CEO) -->
                 <div class="team-card reveal group" style="transition-delay: 0.1s;">
                     <div class="team-img-wrapper shadow-lg mb-4">
-                        <img src="https://i.ibb.co/7dgYmdvw/Muhammad-Hisyam-bin-Herman-1-Copy.png" alt="Hisyam">
+                        <img src="https://i.ibb.co/7dgYmdvw/Muhammad-Hisyam-bin-Herman-1-Copy.png" alt="Muhd Hisyam bin Herman - CEO" loading="lazy">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Hisyam</h4>
-                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">General Manager</p>
+                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Muhd Hisyam</h4>
+                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">CEO</p>
+                        <p class="text-[9px] md:text-[10px] text-gray-600 mt-2 px-2 leading-tight">
+                            Oversees overall strategy & company performance
+                        </p>
                     </div>
                 </div>
-                <!-- Team Member 2: Zhixuan -->
+                
+                <!-- Team Member 2: Lim Zhi Xuan (CFO) -->
                 <div class="team-card reveal group" style="transition-delay: 0.2s;">
                     <div class="team-img-wrapper shadow-lg mb-4">
-                        <img src="https://i.ibb.co/KcDp3m6p/Whats-App-Image-2025-12-14-at-17-56-27-Copy.jpg" alt="Zhixuan">
+                        <img src="https://i.ibb.co/KcDp3m6p/Whats-App-Image-2025-12-14-at-17-56-27-Copy.jpg" alt="Lim Zhi Xuan - CFO" loading="lazy">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Zhixuan</h4>
-                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">Operations Head</p>
+                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Lim Zhi Xuan</h4>
+                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">CFO</p>
+                        <p class="text-[9px] md:text-[10px] text-gray-600 mt-2 px-2 leading-tight">
+                            Handles financial planning & reporting
+                        </p>
                     </div>
                 </div>
-                <!-- Team Member 3: Arif (Corrected Position) -->
+                
+                <!-- Team Member 3: Cheong Zhe Ming (COO) -->
                 <div class="team-card reveal group" style="transition-delay: 0.3s;">
                     <div class="team-img-wrapper shadow-lg mb-4">
-                        <img src="https://i.ibb.co/BVJd9dTY/Whats-App-Image-2026-01-06-at-14-28-43.jpg" alt="Arif">
+                        <img src="https://i.ibb.co/KnwrQq9/d5b10955-c241-4785-a5a7-0e7b7e09752e.png" alt="Cheong Zhe Ming - COO" loading="lazy">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Arif</h4>
-                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">Customer Relations</p>
+                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Cheong Zhe Ming</h4>
+                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">COO</p>
+                        <p class="text-[9px] md:text-[10px] text-gray-600 mt-2 px-2 leading-tight">
+                            Manages daily operations & service delivery
+                        </p>
                     </div>
                 </div>
-                <!-- Team Member 4: Zheming (Corrected Position) -->
+                
+                <!-- Team Member 4: Subbash Kanna (FSM) -->
                 <div class="team-card reveal group" style="transition-delay: 0.4s;">
                     <div class="team-img-wrapper shadow-lg mb-4">
-                        <img src="https://i.ibb.co/0jfYmRXJ/Whats-App-Image-2026-01-06-at-14-23-40.jpg" alt="Zheming">
+                        <img src="https://i.ibb.co/9HLdLdtz/Whats-App-Image-2026-01-06-at-14-28-43-1.jpg" alt="Subbash Kanna - FSM" loading="lazy">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Zheming</h4>
-                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">Logistics Lead</p>
+                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Subbash Kanna</h4>
+                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">FSM</p>
+                        <p class="text-[9px] md:text-[10px] text-gray-600 mt-2 px-2 leading-tight">
+                            Ensures vehicle safety & maintenance standards
+                        </p>
                     </div>
                 </div>
-                <!-- Team Member 5: Subash (Corrected Position) -->
+                
+                <!-- Team Member 5: Muhammad Nur Arif (CSO) -->
                 <div class="team-card reveal group" style="transition-delay: 0.5s;">
                     <div class="team-img-wrapper shadow-lg mb-4">
-                        <img src="https://i.ibb.co/9HLdLdtz/Whats-App-Image-2026-01-06-at-14-28-43-1.jpg" alt="Subash">
+                        <img src="https://i.ibb.co/BVJd9dTY/Whats-App-Image-2026-01-06-at-14-28-43.jpg" alt="Muhammad Nur Arif - CSO" loading="lazy">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Subash</h4>
-                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">Maintenance Manager</p>
+                        <h4 class="text-base md:text-lg font-bold text-blue-900 uppercase tracking-tighter">Muhammad Nur Arif</h4>
+                        <p class="text-[10px] md:text-xs text-blue-500 font-bold uppercase tracking-widest">CSO</p>
+                        <p class="text-[9px] md:text-[10px] text-gray-600 mt-2 px-2 leading-tight">
+                            Assists customers with bookings & support
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Roles Key (Optional) -->
+            <div class="mt-16 pt-8 border-t border-gray-200 text-center reveal">
+                <h4 class="text-lg font-bold text-blue-900 mb-4 uppercase">Team Roles Key</h4>
+                <div class="flex flex-wrap justify-center gap-4 text-xs">
+                    <div class="bg-blue-50 px-3 py-2 rounded-lg">
+                        <span class="font-bold text-blue-900">CEO:</span> Chief Executive Officer
+                    </div>
+                    <div class="bg-blue-50 px-3 py-2 rounded-lg">
+                        <span class="font-bold text-blue-900">CFO:</span> Chief Financial Officer
+                    </div>
+                    <div class="bg-blue-50 px-3 py-2 rounded-lg">
+                        <span class="font-bold text-blue-900">COO:</span> Chief Operating Officer
+                    </div>
+                    <div class="bg-blue-50 px-3 py-2 rounded-lg">
+                        <span class="font-bold text-blue-900">FSM:</span> Fleet Safety Manager
+                    </div>
+                    <div class="bg-blue-50 px-3 py-2 rounded-lg">
+                        <span class="font-bold text-blue-900">CSO:</span> Customer Support Officer
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-blue-50 border-y border-blue-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4 uppercase">Why Choose Us</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-8 bg-white rounded-2xl text-center card-hover border border-blue-100 shadow-sm reveal" style="transition-delay: 0.1s;">
+                    <div class="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center text-white mx-auto mb-6">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">Flexible Rentals</h3>
+                    <p class="text-gray-600 text-sm">Daily, weekly, or monthly solutions.</p>
+                </div>
+                <div class="p-8 bg-white rounded-2xl text-center card-hover border border-blue-100 shadow-sm reveal" style="transition-delay: 0.2s;">
+                    <div class="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center text-white mx-auto mb-6">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">No Hidden Fees</h3>
+                    <p class="text-gray-600 text-sm">Transparency first. No surprises.</p>
+                </div>
+                <div class="p-8 bg-white rounded-2xl text-center card-hover border border-blue-100 shadow-sm reveal" style="transition-delay: 0.3s;">
+                    <div class="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center text-white mx-auto mb-6">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">Price Match</h3>
+                    <p class="text-gray-600 text-sm">We guarantee the best local rates.</p>
+                </div>
+                <div class="p-8 bg-white rounded-2xl text-center card-hover border border-blue-100 shadow-sm reveal" style="transition-delay: 0.4s;">
+                    <div class="bg-blue-900 w-12 h-12 rounded-lg flex items-center justify-center text-white mx-auto mb-6">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-blue-900">24/7 Roadside</h3>
+                    <p class="text-gray-600 text-sm">Assistance whenever you need.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Goals Section -->
+    <section id="goals" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Our Commitment</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Our Company Goals</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Driving excellence through customer-centric service, quality fleet management, and sustainable growth</p>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Goal 1 -->
+                <div class="goal-card bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-8 border border-blue-100 reveal" style="transition-delay: 0.1s;">
+                    <div class="goal-icon-wrapper w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-trophy text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Deliver Outstanding Customer Experience</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-car text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Provide reliable vehicles that are thoroughly inspected and maintained</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-bolt text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Fast booking process with minimal paperwork and instant confirmation</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-search-dollar text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Transparent pricing with no hidden fees and price match guarantee</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-headset text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Responsive 24/7 support to ensure customer satisfaction and repeat business</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-blue-100">
+                        <p class="text-sm text-blue-700 font-semibold text-center">Goal Impact: Increase customer retention by 40% and achieve 95% satisfaction rate</p>
+                    </div>
+                </div>
+
+                <!-- Goal 2 -->
+                <div class="goal-card bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-8 border border-blue-100 reveal" style="transition-delay: 0.2s;">
+                    <div class="goal-icon-wrapper w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-cogs text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Maintain High-Quality & Efficient Fleet</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-sync-alt text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Continuously invest in well-maintained, safe, and modern vehicles</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Meet diverse customer needs with varied vehicle types and models</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-chart-line text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Maximize operational efficiency through smart fleet management</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-shield-alt text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Regular safety inspections and preventive maintenance programs</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-blue-100">
+                        <p class="text-sm text-blue-700 font-semibold text-center">Goal Impact: Achieve 99% vehicle availability and reduce maintenance costs by 25%</p>
+                    </div>
+                </div>
+
+                <!-- Goal 3 -->
+                <div class="goal-card bg-gradient-to-br from-blue-50 to-white rounded-[2rem] p-8 border border-blue-100 reveal" style="transition-delay: 0.3s;">
+                    <div class="goal-icon-wrapper w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-chart-pie text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Drive Sustainable & Profitable Growth</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-expand-arrows-alt text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Expand market reach through digital innovation and mobile app development</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-handshake text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Strategic partnerships with hotels, airlines, and tourism boards</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-leaf text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Responsible practices including eco-friendly vehicles and carbon offset programs</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-100 p-2 rounded-lg">
+                                <i class="fas fa-coins text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Maintain profitability while investing in long-term business stability</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-blue-100">
+                        <p class="text-sm text-blue-700 font-semibold text-center">Goal Impact: Grow market share by 30% annually while maintaining 20% profit margins</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Users Section -->
+    <section id="target-users" class="py-24 bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Who We Serve</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Our Target Users</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Catering to diverse mobility needs with tailored solutions for every type of user</p>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- User Type 1 -->
+                <div class="user-card bg-white rounded-[1.5rem] p-8 reveal" style="transition-delay: 0.1s;">
+                    <div class="user-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-900 mb-6">
+                        <i class="fas fa-umbrella-beach text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 mb-4 uppercase tracking-tight">Leisure Travellers</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-blue-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-blue-800 mb-2">Includes:</h4>
+                            <p class="text-sm text-gray-600">Tourists, families on vacation, couples and solo travellers</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-blue-800 mb-2">Needs:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Short-term rentals (daily/weekly)</li>
+                                <li>• Flexible pickup/drop-off</li>
+                                <li>• Airport & hotel locations</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-blue-800 mb-2">Why They Rent:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Convenience while traveling</li>
+                                <li>• Exploring destinations independently</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Most Popular: Economy & SUV</span>
+                    </div>
+                </div>
+
+                <!-- User Type 2 -->
+                <div class="user-card bg-white rounded-[1.5rem] p-8 reveal" style="transition-delay: 0.2s;">
+                    <div class="user-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center text-green-900 mb-6">
+                        <i class="fas fa-city text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 mb-4 uppercase tracking-tight">Urban Residents</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-green-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-green-800 mb-2">Includes:</h4>
+                            <p class="text-sm text-gray-600">City dwellers, students, young professionals without cars</p>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-green-800 mb-2">Needs:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Hourly or short-term rentals</li>
+                                <li>• App-based access</li>
+                                <li>• Nearby locations</li>
+                                <li>• Cost-effective alternatives</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-green-800 mb-2">Why They Rent:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Occasional errands</li>
+                                <li>• Weekend trips</li>
+                                <li>• Cost-saving vs ownership</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Perfect For: Hourly Rentals</span>
+                    </div>
+                </div>
+
+                <!-- User Type 3 -->
+                <div class="user-card bg-white rounded-[1.5rem] p-8 reveal" style="transition-delay: 0.3s;">
+                    <div class="user-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-orange-900 mb-6">
+                        <i class="fas fa-tools text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 mb-4 uppercase tracking-tight">Replacement Users</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-orange-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-orange-800 mb-2">Includes:</h4>
+                            <p class="text-sm text-gray-600">Individuals whose cars are under repair or insurance claims</p>
+                        </div>
+                        <div class="bg-orange-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-orange-800 mb-2">Needs:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Medium-term rentals (days to weeks)</li>
+                                <li>• Seamless vehicle replacement</li>
+                                <li>• Similar vehicle specifications</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-orange-800 mb-2">Why They Rent:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Maintain mobility during downtime</li>
+                                <li>• Business continuity</li>
+                                <li>• Family transportation needs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="inline-block bg-orange-100 text-orange-800 text-xs font-bold px-3 py-1 rounded-full">Recommended: Sedan & MPV</span>
+                    </div>
+                </div>
+
+                <!-- User Type 4 -->
+                <div class="user-card bg-white rounded-[1.5rem] p-8 reveal" style="transition-delay: 0.4s;">
+                    <div class="user-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center text-purple-900 mb-6">
+                        <i class="fas fa-glass-cheers text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 mb-4 uppercase tracking-tight">Special Occasion Users</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-purple-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-purple-800 mb-2">Includes:</h4>
+                            <p class="text-sm text-gray-600">Wedding attendees, event planners, VIP clients, business executives</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-purple-800 mb-2">Needs:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Luxury or specialty vehicles</li>
+                                <li>• Short-term, high-end rentals</li>
+                                <li>• Premium service & support</li>
+                                <li>• Chauffeur services (optional)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 rounded-xl p-3">
+                            <h4 class="text-sm font-bold text-purple-800 mb-2">Why They Rent:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Style and prestige</li>
+                                <li>• Comfort for special events</li>
+                                <li>• Business image enhancement</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Premium: Luxury Sedan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Booking Process Section -->
+    <section id="booking-process" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Simple Steps</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Booking Process</h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">Rent a car in 4 simple steps - from booking to hitting the road</p>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto">
+                <!-- Progress Line -->
+                <div class="progress-line hidden md:block">
+                    <div class="progress-line-fill w-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="booking-step bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-6 text-center reveal" style="transition-delay: 0.1s;">
+                        <div class="step-number w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-black mx-auto mb-6">
+                            1
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-900 mx-auto mb-6">
+                            <i class="fas fa-laptop text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-blue-900 mb-4 uppercase">Book & Deposit</h3>
+                        <div class="space-y-3 mb-4">
+                            <p class="text-gray-600 text-sm">Visit website or contact us to choose vehicle & rental period</p>
+                            <div class="bg-blue-100 rounded-lg p-2">
+                                <p class="text-xs font-bold text-blue-800">Pay security deposit</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Time: 5-10 mins</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="booking-step bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-6 text-center reveal" style="transition-delay: 0.2s;">
+                        <div class="step-number w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-black mx-auto mb-6">
+                            2
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-900 mx-auto mb-6">
+                            <i class="fas fa-file-signature text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-blue-900 mb-4 uppercase">Submit & Pay</h3>
+                        <div class="space-y-3 mb-4">
+                            <p class="text-gray-600 text-sm">Submit required documents upon vehicle collection at our centre</p>
+                            <div class="bg-blue-100 rounded-lg p-2">
+                                <p class="text-xs font-bold text-blue-800">Pay full rental fees</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Time: 15-20 mins</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="booking-step bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-6 text-center reveal" style="transition-delay: 0.3s;">
+                        <div class="step-number w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-black mx-auto mb-6">
+                            3
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-900 mx-auto mb-6">
+                            <i class="fas fa-key text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-blue-900 mb-4 uppercase">Collect & Drive</h3>
+                        <div class="space-y-3 mb-4">
+                            <p class="text-gray-600 text-sm">Collect the car key and begin the rental period</p>
+                            <div class="bg-blue-100 rounded-lg p-2">
+                                <p class="text-xs font-bold text-blue-800">Complete vehicle inspection</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Time: 10 mins</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="booking-step bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-6 text-center reveal" style="transition-delay: 0.4s;">
+                        <div class="step-number w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-black mx-auto mb-6">
+                            4
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-900 mx-auto mb-6">
+                            <i class="fas fa-car-return text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-black text-blue-900 mb-4 uppercase">Return & Refund</h3>
+                        <div class="space-y-3 mb-4">
+                            <p class="text-gray-600 text-sm">Vehicle return upon completion of the rental period</p>
+                            <div class="bg-blue-100 rounded-lg p-2">
+                                <p class="text-xs font-bold text-blue-800">Deposit refund after inspection</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Time: 15 mins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center reveal">
+                <div class="bg-gradient-to-r from-blue-50 to-white rounded-2xl p-8 max-w-3xl mx-auto border border-blue-100">
+                    <h4 class="text-2xl font-black text-blue-900 mb-4">Total Process Time: Less than 1 Hour!</h4>
+                    <p class="text-gray-600 mb-6">Our streamlined process ensures you get on the road quickly with minimal paperwork.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-xl border border-blue-100">
+                            <div class="text-3xl font-black text-blue-600 mb-2">RM200</div>
+                            <div class="text-sm font-semibold text-gray-700">Security Deposit</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-blue-100">
+                            <div class="text-3xl font-black text-blue-600 mb-2">24/7</div>
+                            <div class="text-sm font-semibold text-gray-700">Support</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-blue-100">
+                            <div class="text-3xl font-black text-blue-600 mb-2">7 Days</div>
+                            <div class="text-sm font-semibold text-gray-700">Deposit Refund</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Safety Assurance Section -->
+    <section id="safety-assurance" class="py-24 bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Safety First</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Vehicle Safety, Condition & Compliance Assurance</h2>
+                <p class="text-gray-600 text-lg max-w-4xl mx-auto">We provide roadworthy & safe cars in good condition with comprehensive inspections and legal compliance</p>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Card 1: Vehicle Condition & Safety -->
+                <div class="safety-card bg-white rounded-[2rem] p-8 border border-blue-100 shadow-lg reveal" style="transition-delay: 0.1s;">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-car text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Vehicle Condition & Safety Assurance</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                            <div class="bg-green-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">All vehicles undergo routine inspection and maintenance before being rented out</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                            <div class="bg-green-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-clipboard-check text-green-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">A pre-rental vehicle inspection checklist is completed before handover</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                            <div class="bg-green-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-shield-alt text-green-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Key safety components checked: braking system, tyres condition and pressure, lights and indicators, engine condition, steering and suspension</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-green-50 p-4 rounded-xl">
+                            <div class="bg-green-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-award text-green-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Only vehicles that pass the inspection are approved for rental</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Handover Confirmation -->
+                <div class="safety-card bg-white rounded-[2rem] p-8 border border-blue-100 shadow-lg reveal" style="transition-delay: 0.2s;">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-handshake text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Handover Confirmation</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 bg-blue-50 p-4 rounded-xl">
+                            <div class="bg-blue-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-file-alt text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Vehicle condition is recorded and documented before handover</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-blue-50 p-4 rounded-xl">
+                            <div class="bg-blue-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-search text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Existing scratches or damages are clearly noted in the inspection form</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-blue-50 p-4 rounded-xl">
+                            <div class="bg-blue-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-clipboard-list text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Customers are given opportunity to inspect vehicle before collection</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-blue-50 p-4 rounded-xl">
+                            <div class="bg-blue-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-signature text-blue-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Customer's signature confirms vehicle is in good condition at time of collection</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Legal & Compliance -->
+                <div class="safety-card bg-white rounded-[2rem] p-8 border border-blue-100 shadow-lg reveal" style="transition-delay: 0.3s;">
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-white mb-8 mx-auto">
+                        <i class="fas fa-gavel text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-blue-900 text-center mb-6 uppercase tracking-tight">Legal & Compliance Assurance</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3 bg-purple-50 p-4 rounded-xl">
+                            <div class="bg-purple-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-file-contract text-purple-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">All vehicles are properly registered, insured and road tax is valid</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-purple-50 p-4 rounded-xl">
+                            <div class="bg-purple-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-balance-scale text-purple-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Vehicles comply with local road safety regulations</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-purple-50 p-4 rounded-xl">
+                            <div class="bg-purple-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-user-shield text-purple-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Comprehensive insurance coverage for all rentals</p>
+                        </div>
+                        <div class="flex items-start gap-3 bg-purple-50 p-4 rounded-xl">
+                            <div class="bg-purple-100 p-2 rounded-lg mt-1">
+                                <i class="fas fa-certificate text-purple-600"></i>
+                            </div>
+                            <p class="text-gray-600 flex-1">Regular compliance audits and updates to meet regulatory standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits of Our Service Section -->
+    <section id="benefits" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Why Choose Us</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">We Will Always Provide The Best Car For You</h2>
+                <p class="text-gray-600 text-lg max-w-4xl mx-auto">Experience the ZACHS difference with our comprehensive service benefits</p>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Benefit 1 -->
+                <div class="benefit-card bg-gradient-to-br from-blue-50 to-white rounded-[1.5rem] p-8 border border-blue-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white mb-6 mx-auto">
+                        <i class="fas fa-car text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 text-center mb-4 uppercase tracking-tight">Well-Maintained & Safe Vehicles</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">All vehicles undergo routine inspection and maintenance before rental</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Only roadworthy vehicles that pass inspection are approved for use</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Reduces breakdown risk and ensures customer safety</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-blue-100 text-center">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Safety First</span>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card bg-gradient-to-br from-green-50 to-white rounded-[1.5rem] p-8 border border-green-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-600 to-green-800 flex items-center justify-center text-white mb-6 mx-auto">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 text-center mb-4 uppercase tracking-tight">Emergency & Customer Support</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">24/7 roadside assistance and emergency contact provided</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Support for breakdowns, accidents, and insurance matters</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Customers receive immediate help when issues arise</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-green-100 text-center">
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">24/7 Support</span>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card bg-gradient-to-br from-yellow-50 to-white rounded-[1.5rem] p-8 border border-yellow-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-600 to-yellow-800 flex items-center justify-center text-white mb-6 mx-auto">
+                        <i class="fas fa-file-contract text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 text-center mb-4 uppercase tracking-tight">Clear & Fair Rental Policies</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">No hidden fees, transparent pricing, fuel policy, and late return charges</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Administrative fees clearly stated in T&C</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Builds customer trust and ensures fair treatment</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-yellow-100 text-center">
+                        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">No Hidden Fees</span>
+                    </div>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-card bg-gradient-to-br from-purple-50 to-white rounded-[1.5rem] p-8 border border-purple-100 hover:shadow-xl transition-all duration-300 reveal" style="transition-delay: 0.4s;">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center text-white mb-6 mx-auto">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-blue-900 text-center mb-4 uppercase tracking-tight">Insurance & Legal Compliance</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">All vehicles are properly registered, insured, and road-tax valid</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Vehicles comply with local road safety regulations</p>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <p class="text-sm text-gray-600">Customers drive legally and with peace of mind</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-purple-100 text-center">
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Fully Insured</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -385,230 +1401,853 @@
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
                 <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Premium Fleet</span>
-                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Ready-to-Drive Units</h2>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Our Ready Unit</h2>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Economy -->
-                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 reveal">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80&w=800" 
-                             alt="Economy" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <!-- Unit Card 1: Economy (Perodua Axia) -->
+                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
+                    <div class="carousel-container economy-bg">
+                        <div class="carousel-slide active">
+                            <img src="https://i.ibb.co/YTfTNwK4/economy-1-new.jpg" alt="Perodua Axia - Economy Car" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/fVLL2gkN/economy-2-new.jpg" alt="Perodua Myvi - Economy Car" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/d035ysNQ/economy-3-new.jpg" alt="Proton Iriz - Economy Car" loading="lazy">
+                        </div>
+                        <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="carousel-nav carousel-next" onclick="nextSlide(this.parentElement)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="carousel-dot active" onclick="goToSlide(this.parentElement.parentElement, 0)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 1)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 2)"></div>
+                        </div>
+                        <div class="warranty-badge">
+                            <i class="fas fa-shield-alt"></i> Warranty
+                        </div>
                         <div class="absolute top-6 left-6 price-tag-container py-2 px-6 rounded-xl">
-                            <span class="block text-blue-600 text-[10px] font-black uppercase mb-1">Entry Level</span>
+                            <span class="block text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Low Rate</span>
                             <div class="text-blue-900 font-black flex items-center">
-                                <span class="text-4xl tracking-tighter">RM100</span>
+                                <span class="currency-symbol">RM</span>
+                                <span class="text-4xl tracking-tighter">100</span>
                                 <span class="text-xs ml-1 font-bold text-gray-400">/day</span>
                             </div>
                         </div>
                     </div>
                     <div class="p-8">
-                        <h3 class="text-2xl font-black text-blue-900 uppercase mb-4">ECONOMY CLASS</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Redefine your daily commute with our Economy selection. Featuring the Perodua Axia and Proton Saga, these cars are optimized for high fuel efficiency, boasting up to 22km/liter. Ideal for solo travelers, students, or those looking for an agile car to navigate tight city streets and find parking with ease. Don't let the "Economy" tag fool you; these cars come equipped with Bluetooth connectivity, safety sensors, and ice-cold air conditioning—essential for the Malaysian heat. 
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-blue-900 uppercase tracking-tighter">ECONOMY</h3>
+                            <span class="bg-green-100 text-green-600 text-[10px] font-bold px-3 py-1 rounded-full">AVAILABLE</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Perfect for budget-conscious travelers and city dwellers. Compact size with efficient engines makes navigating narrow streets and finding parking easy.
                         </p>
-                        <ul class="text-xs text-gray-500 mb-6 grid grid-cols-2 gap-2">
-                            <li><i class="fas fa-gas-pump mr-2"></i> Ultra Fuel Efficient</li>
-                            <li><i class="fas fa-user mr-2"></i> 4-5 Seater</li>
-                            <li><i class="fas fa-compact-disc mr-2"></i> Smart Connectivity</li>
-                            <li><i class="fas fa-parking mr-2"></i> Easy Park Assist</li>
-                        </ul>
-                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-blue-800 transition">Select Economy</a>
+                        <div class="flex gap-2 mb-4">
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold active" onclick="toggleRentalType(this, 'daily')">Daily: RM100</button>
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold" onclick="toggleRentalType(this, 'hourly')">Hourly: RM20</button>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-4">
+                            <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest mb-1">Multi-day Savings:</p>
+                            <p class="text-xs text-blue-700 font-bold">RM90/day (3+ days) | RM80/day (7+ days)</p>
+                        </div>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 italic border-l-2 border-blue-200 pl-3">
+                            Features industry-leading fuel economy, making it perfect for navigating busy city centers.
+                        </p>
+                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-800 transition transform hover:scale-[1.02]">Rent This Unit</a>
                     </div>
                 </div>
 
-                <!-- Sedan -->
-                <div class="group bg-blue-900 rounded-[2.5rem] overflow-hidden relative md:-translate-y-4 reveal">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&q=80&w=800" 
-                             alt="Sedan" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <!-- Unit Card 2: Sedan (Proton S70) -->
+                <div class="group bg-blue-900 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-2xl relative md:-translate-y-4 reveal">
+                    <div class="carousel-container sedan-bg">
+                        <div class="carousel-slide active">
+                            <img src="https://i.ibb.co/Lmh9ngJ/sedan-1-new.jpg" alt="Proton S70 - Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/7tZkFPtz/sedan-2-new.jpg" alt="Honda City - Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/Q3N655TS/sedan-3-new.jpg" alt="Toyota Vios - Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="carousel-nav carousel-next" onclick="nextSlide(this.parentElement)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="carousel-dot active" onclick="goToSlide(this.parentElement.parentElement, 0)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 1)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 2)"></div>
+                        </div>
+                        <div class="warranty-badge">
+                            <i class="fas fa-shield-alt"></i> Warranty
+                        </div>
                         <div class="absolute top-6 left-6 price-tag-container py-2 px-6 rounded-xl">
-                            <span class="block text-blue-600 text-[10px] font-black uppercase mb-1">Most Popular</span>
+                            <span class="block text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Most Popular</span>
                             <div class="text-blue-900 font-black flex items-center">
-                                <span class="text-4xl tracking-tighter">RM150</span>
+                                <span class="currency-symbol">RM</span>
+                                <span class="text-4xl tracking-tighter">150</span>
                                 <span class="text-xs ml-1 font-bold text-gray-400">/day</span>
                             </div>
                         </div>
                     </div>
                     <div class="p-8">
-                        <h3 class="text-2xl font-black text-white uppercase mb-4">EXECUTIVE SEDAN</h3>
-                        <p class="text-blue-100/80 text-sm leading-relaxed mb-6">
-                            Experience the gold standard of comfort. Our Sedan fleet, including the Toyota Vios and Honda City, offers a more refined suspension and superior trunk space for luggage. This class is designed for long-distance highway travel, providing a stable and quiet cabin that allows you to arrive at your destination refreshed. Perfect for business trips or small families who appreciate a bit more legroom and safety features like multiple airbags and stability control.
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-white uppercase tracking-tighter">SEDAN</h3>
+                            <span class="bg-blue-700 text-blue-100 text-[10px] font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
+                        </div>
+                        <p class="text-blue-100/90 text-sm leading-relaxed mb-4">
+                            Perfect balance of comfort, space, and performance. Ideal for small families or business professionals, providing a smooth highway experience.
                         </p>
-                        <ul class="text-xs text-blue-200/60 mb-6 grid grid-cols-2 gap-2">
-                            <li><i class="fas fa-briefcase mr-2"></i> Large Luggage Space</li>
-                            <li><i class="fas fa-shield-alt mr-2"></i> 5-Star ASEAN NCAP</li>
-                            <li><i class="fas fa-wind mr-2"></i> Premium Aircon</li>
-                            <li><i class="fas fa-road mr-2"></i> Highway Stability</li>
-                        </ul>
-                        <a href="#booking" class="block text-center w-full bg-white text-blue-900 py-4 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-gray-100 transition">Select Sedan</a>
+                        <div class="flex gap-2 mb-4">
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-white text-white text-sm font-bold active" onclick="toggleRentalType(this, 'daily')">Daily: RM150</button>
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-white text-white text-sm font-bold" onclick="toggleRentalType(this, 'hourly')">Hourly: RM30</button>
+                        </div>
+                        <div class="bg-blue-800/50 p-3 rounded-xl border border-blue-700 mb-4">
+                            <p class="text-[10px] font-black text-blue-200 uppercase tracking-widest mb-1">Multi-day Savings:</p>
+                            <p class="text-xs text-white font-bold">RM135/day (3+ days) | RM120/day (7+ days)</p>
+                        </div>
+                        <p class="text-blue-200/60 text-xs leading-relaxed mb-6 italic border-l-2 border-blue-400 pl-3">
+                            The gold standard for travelers who demand noise insulation and generous trunk capacity.
+                        </p>
+                        <a href="#booking" class="block text-center w-full bg-white text-blue-900 py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-gray-100 transition transform hover:scale-[1.02]">Rent This Unit</a>
                     </div>
                 </div>
 
-                <!-- SUV -->
-                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 reveal">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800" 
-                             alt="SUV" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <!-- Unit Card 3: SUV (Perodua Aruz) -->
+                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
+                    <div class="carousel-container suv-bg">
+                        <div class="carousel-slide active">
+                            <img src="https://i.ibb.co/RT15XSxC/suv-car-1.jpg" alt="Perodua Aruz - SUV" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/Ndh4Jdk8/suv-car-2.jpg" alt="Toyota Fortuner - SUV" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/3YQ6BcG6/suv-car-3.jpg" alt="Honda BR-V - SUV" loading="lazy">
+                        </div>
+                        <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="carousel-nav carousel-next" onclick="nextSlide(this.parentElement)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="carousel-dot active" onclick="goToSlide(this.parentElement.parentElement, 0)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 1)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 2)"></div>
+                        </div>
+                        <div class="warranty-badge">
+                            <i class="fas fa-shield-alt"></i> Warranty
+                        </div>
                         <div class="absolute top-6 left-6 price-tag-container py-2 px-6 rounded-xl">
-                            <span class="block text-blue-600 text-[10px] font-black uppercase mb-1">Adventure Ready</span>
+                            <span class="block text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Premium</span>
                             <div class="text-blue-900 font-black flex items-center">
-                                <span class="text-4xl tracking-tighter">RM200</span>
+                                <span class="currency-symbol">RM</span>
+                                <span class="text-4xl tracking-tighter">200</span>
                                 <span class="text-xs ml-1 font-bold text-gray-400">/day</span>
                             </div>
                         </div>
                     </div>
                     <div class="p-8">
-                        <h3 class="text-2xl font-black text-blue-900 uppercase mb-4">ADVENTURE SUV</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                            Command the road with our range of Sports Utility Vehicles. Models like the Proton X50 or Perodua Ativa provide the high ground clearance needed for varied Malaysian terrains. Whether it's a family trip to the Highlands or a coastal drive to Terengganu, these SUVs offer a commanding view of the road and advanced tech suites. With turbocharged engines and ample space for outdoor gear, it's the ultimate choice for the modern Malaysian explorer who refuses to compromise on power.
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-blue-900 uppercase tracking-tighter">SUV</h3>
+                            <span class="bg-orange-100 text-orange-600 text-[10px] font-bold px-3 py-1 rounded-full">FAMILY CHOICE</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Experience power and prestige with our SUV category. Offers advanced safety features, a high driving position, and ample legroom for all passengers.
                         </p>
-                        <ul class="text-xs text-gray-500 mb-6 grid grid-cols-2 gap-2">
-                            <li><i class="fas fa-mountain mr-2"></i> High Ground Clearance</li>
-                            <li><i class="fas fa-tachometer-alt mr-2"></i> Turbo Performance</li>
-                            <li><i class="fas fa-users mr-2"></i> Spacious Cabin</li>
-                            <li><i class="fas fa-camera mr-2"></i> 360-View Camera</li>
-                        </ul>
-                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black uppercase text-sm tracking-widest hover:bg-blue-800 transition">Select SUV</a>
+                        <div class="flex gap-2 mb-4">
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold active" onclick="toggleRentalType(this, 'daily')">Daily: RM200</button>
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold" onclick="toggleRentalType(this, 'hourly')">Hourly: RM45</button>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-4">
+                            <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest mb-1">Multi-day Savings:</p>
+                            <p class="text-xs text-blue-700 font-bold">RM180/day (3+ days) | RM160/day (7+ days)</p>
+                        </div>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 italic border-l-2 border-blue-200 pl-3">
+                            Spacious sanctuary with flexible seating for family vacations to the highlands.
+                        </p>
+                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-800 transition transform hover:scale-[1.02]">Rent This Unit</a>
+                    </div>
+                </div>
+
+                <!-- Unit Card 4: Luxury Sedan -->
+                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
+                    <div class="carousel-container luxury-bg">
+                        <div class="carousel-slide active">
+                            <img src="https://i.ibb.co/7tggsFDQ/luxury-sedan-1-new.jpg" alt="Mercedes Benz C200 - Luxury Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/WWmLrGmt/luxury-sedan-2-new.jpg" alt="BMW 320i - Luxury Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/hFRr5KTg/luxury-sedan-3-new.jpg" alt="Lexus ES250 - Luxury Sedan" loading="lazy">
+                        </div>
+                        <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="carousel-nav carousel-next" onclick="nextSlide(this.parentElement)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="carousel-dot active" onclick="goToSlide(this.parentElement.parentElement, 0)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 1)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 2)"></div>
+                        </div>
+                        <div class="warranty-badge">
+                            <i class="fas fa-shield-alt"></i> Warranty
+                        </div>
+                        <div class="absolute top-6 left-6 price-tag-container py-2 px-6 rounded-xl">
+                            <span class="block text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Luxury</span>
+                            <div class="text-blue-900 font-black flex items-center">
+                                <span class="currency-symbol">RM</span>
+                                <span class="text-4xl tracking-tighter">300</span>
+                                <span class="text-xs ml-1 font-bold text-gray-400">/day</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-blue-900 uppercase tracking-tighter">LUXURY SEDAN</h3>
+                            <span class="bg-purple-100 text-purple-600 text-[10px] font-bold px-3 py-1 rounded-full">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Experience premium luxury and performance with our luxury sedan collection. Perfect for business meetings, special occasions, or enjoying a superior driving experience.
+                        </p>
+                        <div class="flex gap-2 mb-4">
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold active" onclick="toggleRentalType(this, 'daily')">Daily: RM300</button>
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold" onclick="toggleRentalType(this, 'hourly')">Hourly: RM65</button>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-4">
+                            <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest mb-1">Multi-day Savings:</p>
+                            <p class="text-xs text-blue-700 font-bold">RM270/day (3+ days) | RM240/day (7+ days)</p>
+                        </div>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 italic border-l-2 border-blue-200 pl-3">
+                            Premium leather seats, advanced technology, and powerful engines for an unforgettable driving experience.
+                        </p>
+                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-800 transition transform hover:scale-[1.02]">Rent This Unit</a>
+                    </div>
+                </div>
+
+                <!-- Unit Card 5: MPV (Toyota Vellfire) -->
+                <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
+                    <div class="carousel-container mpv-bg">
+                        <div class="carousel-slide active">
+                            <img src="https://i.ibb.co/qLVq8CZQ/mpv-1-new.jpg" alt="Toyota Vellfire - MPV" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/Kjr8r9RH/mpv-2-new.jpg" alt="Nissan Serena - MPV" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://i.ibb.co/DDQr2GLb/mpv-3-new.jpg" alt="Honda Odyssey - MPV" loading="lazy">
+                        </div>
+                        <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="carousel-nav carousel-next" onclick="nextSlide(this.parentElement)">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        <div class="carousel-controls">
+                            <div class="carousel-dot active" onclick="goToSlide(this.parentElement.parentElement, 0)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 1)"></div>
+                            <div class="carousel-dot" onclick="goToSlide(this.parentElement.parentElement, 2)"></div>
+                        </div>
+                        <div class="warranty-badge">
+                            <i class="fas fa-shield-alt"></i> Warranty
+                        </div>
+                        <div class="absolute top-6 left-6 price-tag-container py-2 px-6 rounded-xl">
+                            <span class="block text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Family Pick</span>
+                            <div class="text-blue-900 font-black flex items-center">
+                                <span class="currency-symbol">RM</span>
+                                <span class="text-4xl tracking-tighter">250</span>
+                                <span class="text-xs ml-1 font-bold text-gray-400">/day</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-black text-blue-900 uppercase tracking-tighter">MPV</h3>
+                            <span class="bg-purple-100 text-purple-600 text-[10px] font-bold px-3 py-1 rounded-full">7-SEATER</span>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Perfect for large families or group travel. Spacious, comfortable, and equipped with modern amenities for long journeys. Features include rear air-conditioning and ample luggage space.
+                        </p>
+                        <div class="flex gap-2 mb-4">
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold active" onclick="toggleRentalType(this, 'daily')">Daily: RM250</button>
+                            <button class="rental-type-btn py-2 px-4 rounded-lg border border-blue-900 text-blue-900 text-sm font-bold" onclick="toggleRentalType(this, 'hourly')">Hourly: RM55</button>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 mb-4">
+                            <p class="text-[10px] font-black text-blue-900 uppercase tracking-widest mb-1">Multi-day Savings:</p>
+                            <p class="text-xs text-blue-700 font-bold">RM225/day (3+ days) | RM200/day (7+ days)</p>
+                        </div>
+                        <p class="text-gray-500 text-xs leading-relaxed mb-6 italic border-l-2 border-blue-200 pl-3">
+                            Ideal for family vacations, airport transfers, and group outings with ample space for luggage and passengers.
+                        </p>
+                        <a href="#booking" class="block text-center w-full bg-blue-900 text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-blue-800 transition transform hover:scale-[1.02]">Rent This Unit</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Booking Section -->
-    <section id="booking" class="py-24 bg-blue-50">
-        <div class="container mx-auto px-6 reveal">
-            <div class="max-w-5xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-black text-blue-900 uppercase">Instant Booking</h2>
-                    <p class="text-gray-500 mt-2">No commitment required. We will call you to confirm the details.</p>
-                </div>
-
-                <form class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-gray-100">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-                        <div class="space-y-6">
-                            <h3 class="text-lg font-black text-blue-900 uppercase border-b border-blue-100 pb-2">Personal Information</h3>
-                            <input type="text" placeholder="Full Name (As per IC/Passport)" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-                            <input type="tel" placeholder="WhatsApp / Phone Number" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-                            <select class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-                                <option value="" disabled selected>Preferred Vehicle Class</option>
-                                <option>Economy Car (RM100/day)</option>
-                                <option>Sedan (RM150/day)</option>
-                                <option>SUV (RM200/day)</option>
-                            </select>
-                        </div>
-                        <div class="space-y-6">
-                            <h3 class="text-lg font-black text-blue-900 uppercase border-b border-blue-100 pb-2">Scheduling</h3>
-                            <div>
-                                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">Collection Date & Time</label>
-                                <input type="datetime-local" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none">
-                            </div>
-                            <div>
-                                <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">Return Date & Time</label>
-                                <input type="datetime-local" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none">
-                            </div>
-                        </div>
-                        <div class="space-y-6">
-                            <h3 class="text-lg font-black text-blue-900 uppercase border-b border-blue-100 pb-2">Location Details</h3>
-                            <input type="text" placeholder="Pickup Area (e.g. SP Sentral, KLIA)" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none">
-                            <textarea placeholder="Special Requests (e.g. Baby seat, GPS, One-way dropoff)" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 h-24 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
-                        </div>
-                    </div>
-                    <button type="button" class="w-full bg-blue-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-blue-800 transition flex items-center justify-center">
-                        SEND BOOKING REQUEST
-                    </button>
-                    <p class="text-[10px] text-gray-400 mt-4 text-center italic">By submitting, you agree to our terms of service and privacy policy.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed FAQ Section -->
-    <section id="faq" class="py-24 bg-white">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase">General FAQ & Rental Terms</h2>
-                <p class="text-gray-500">Everything you need to know before you hit the road.</p>
-            </div>
-
-            <div class="space-y-4 reveal">
-                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
-                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">What are the insurance coverage details?</span>
-                        <div class="faq-icon transition-transform"><i class="fas fa-chevron-down text-blue-600"></i></div>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 text-sm leading-relaxed">
-                            All ZACHS rentals include standard Third-Party Liability insurance as mandated by Malaysian law. This covers damage to other people's property and injuries. For your own protection, we highly recommend our Collision Damage Waiver (CDW). This significantly reduces your financial responsibility (excess) in case of damage to the rental vehicle. Please note that insurance does not cover interior damage, lost keys, or fuel contamination.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
-                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">What happens if I return the car late?</span>
-                        <div class="faq-icon transition-transform"><i class="fas fa-chevron-down text-blue-600"></i></div>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 text-sm leading-relaxed">
-                            We provide a 1-hour grace period for returns. Beyond this window, an hourly rate (typically RM15-RM25 depending on vehicle class) will apply. If the return is more than 4 hours late, a full day's rental fee will be charged. We encourage customers to inform us via WhatsApp at least 4 hours in advance if they anticipate a delay to avoid unnecessary penalties and help us manage our fleet schedule.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
-                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">Are there any mileage restrictions?</span>
-                        <div class="faq-icon transition-transform"><i class="fas fa-chevron-down text-blue-600"></i></div>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 text-sm leading-relaxed">
-                            Most of our standard rentals come with a generous daily limit of 300km, which is sufficient for most travelers in Peninsular Malaysia. For those planning intense cross-country trips, we offer an "Unlimited Mileage" add-on for a small daily fee. Exceeding the standard limit without the add-on will result in a charge of RM0.50 per additional kilometer.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-100 shadow-sm">
-                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
-                        <span class="text-lg font-bold text-blue-900">What is the "ZACHS Cleanliness Pledge"?</span>
-                        <div class="faq-icon transition-transform"><i class="fas fa-chevron-down text-blue-600"></i></div>
-                    </button>
-                    <div class="faq-answer px-6">
-                        <p class="pb-6 text-gray-600 text-sm leading-relaxed">
-                            In a post-pandemic world, we take sanitation seriously. Every car undergoes a high-temperature steam cleaning and interior sanitization process after every rental. We pay special attention to "high-touch" areas like the steering wheel, gear shifter, and door handles. If you find the car unsatisfactory at the point of collection, we will replace it immediately or provide a full refund.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feedback Section -->
-    <section id="feedback" class="py-24 bg-blue-900 text-white">
+    <!-- Updated Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl font-black uppercase text-blue-400">Trusted by Travelers</h2>
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Customer Reviews</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">What Our Customers Say</h2>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 reveal">
-                    <div class="text-yellow-400 mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 text-sm">"The transparency is what keeps me coming back. No hidden insurance charges, and the car was spotless."</p>
-                    <h4 class="font-bold text-blue-300">Ahmad Fauzi</h4>
-                    <p class="text-[10px] uppercase text-blue-500">Business Traveler</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1: Joelyn -->
+                <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-100 to-pink-200 flex items-center justify-center text-pink-600 font-bold text-lg mr-4">
+                            J
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Joelyn</h4>
+                            <p class="text-gray-500 text-sm">Booked SUV for family wedding</p>
+                        </div>
+                        <div class="ml-auto text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic leading-relaxed mb-6 border-l-4 border-pink-300 pl-4 py-2">
+                        "Booked for my sister's wedding in Kedah. No hidden fees, great customer service, and the SUV was perfect for our family. Will rent again!"
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i> December 2024
+                        </div>
+                        <div class="bg-pink-50 text-pink-700 text-xs font-bold px-3 py-1 rounded-full">
+                            Family Trip
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 reveal">
-                    <div class="text-yellow-400 mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 text-sm">"Rented an SUV for our trip to Cameron Highlands. The car handled the steep climbs perfectly. Great power!"</p>
-                    <h4 class="font-bold text-blue-300">Sarah Jenkins</h4>
-                    <p class="text-[10px] uppercase text-blue-500">Tourist</p>
+
+                <!-- Testimonial 2: Ben Li -->
+                <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center text-blue-600 font-bold text-lg mr-4">
+                            B
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Ben Li</h4>
+                            <p class="text-gray-500 text-sm">Freelancer for client meetings</p>
+                        </div>
+                        <div class="ml-auto text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic leading-relaxed mb-6 border-l-4 border-blue-300 pl-4 py-2">
+                        "As a freelancer, I need a car for client meetings. This service saved me from buying one. Affordable, reliable, and the website makes booking so easy."
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i> January 2025
+                        </div>
+                        <div class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">
+                            Business Use
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-blue-800/40 p-8 rounded-3xl border border-blue-700 reveal">
-                    <div class="text-yellow-400 mb-4 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="italic mb-6 text-sm">"Student-friendly prices. The Axia was perfect for my weekend trip back home to Penang."</p>
-                    <h4 class="font-bold text-blue-300">Kumar Dass</h4>
-                    <p class="text-[10px] uppercase text-blue-500">Local Resident</p>
+
+                <!-- Testimonial 3: Mei Lin -->
+                <div class="testimonial-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 reveal" style="transition-delay: 0.3s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center text-green-600 font-bold text-lg mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-blue-900">Mei Lin</h4>
+                            <p class="text-gray-500 text-sm">Regular customer in Kedah</p>
+                        </div>
+                        <div class="ml-auto text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic leading-relaxed mb-6 border-l-4 border-green-300 pl-4 py-2">
+                        "Best rental deal I've found in Kedah! The car was clean, pickup was smooth, and the price was half of what other companies quoted. Truly 'Drive More, Pay Less'!"
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            <i class="fas fa-calendar-alt mr-2"></i> November 2024
+                        </div>
+                        <div class="bg-green-50 text-green-700 text-xs font-bold px-3 py-1 rounded-full">
+                            Value for Money
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="py-24 bg-gradient-to-br from-blue-50 to-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Quick Booking</span>
+                <h2 class="text-4xl md:text-5xl font-black text-blue-900 mb-6 uppercase">Book Your Car Now</h2>
+                <p class="text-gray-600 text-lg">Fill in your details and we'll get back to you within 30 minutes</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden reveal">
+                <div class="grid md:grid-cols-2">
+                    <!-- Left side - Form -->
+                    <div class="p-8 md:p-12">
+                        <form id="bookingForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Full Name *</label>
+                                    <input type="text" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                           placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Phone Number *</label>
+                                    <input type="tel" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                           placeholder="012-345 6789">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Email Address *</label>
+                                <input type="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                       placeholder="john@example.com">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Preferred Car *</label>
+                                <select required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                    <option value="">Select a car model</option>
+                                    <option value="economy">Economy Car (Perodua Axia/Myvi/Proton Iriz) - RM100/day or RM20/hour</option>
+                                    <option value="sedan">Sedan (Proton S70/Honda City/Toyota Vios) - RM150/day or RM30/hour</option>
+                                    <option value="suv">SUV (Perodua Aruz/Toyota Fortuner/Honda BR-V) - RM200/day or RM45/hour</option>
+                                    <option value="luxury">Luxury Sedan (Mercedes C200/BMW 320i/Lexus ES250) - RM300/day or RM65/hour</option>
+                                    <option value="mpv">MPV (Toyota Vellfire/Nissan Serena/Honda Odyssey) - RM250/day or RM55/hour</option>
+                                </select>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Rental Type *</label>
+                                    <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                        <option value="">Select rental type</option>
+                                        <option value="daily">Daily Rental</option>
+                                        <option value="hourly">Hourly Rental</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Duration *</label>
+                                    <div class="flex gap-2">
+                                        <input type="number" min="1" max="30" placeholder="Days" class="w-1/2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition rental-days">
+                                        <input type="number" min="1" max="72" placeholder="Hours" class="w-1/2 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition rental-hours">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Pick-up Date *</label>
+                                    <input type="date" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Pick-up Time *</label>
+                                    <input type="time" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Pick-up Location</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                                    <option value="office">ZACHS Office (Sungai Petani)</option>
+                                    <option value="delivery">Delivery (Additional charges apply)</option>
+                                    <option value="airport">Penang International Airport</option>
+                                    <option value="alor_setar">Alor Setar</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-blue-900 mb-2 uppercase tracking-wider">Additional Notes</label>
+                                <textarea rows="3" 
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                          placeholder="Special requests, driving experience, etc."></textarea>
+                            </div>
+
+                            <div class="flex items-center">
+                                <input type="checkbox" id="agreeTerms" required class="w-4 h-4 text-blue-600 border-gray-300 rounded">
+                                <label for="agreeTerms" class="ml-2 text-sm text-gray-600">
+                                    I agree to the <a href="#terms" class="text-blue-600 font-semibold">Terms & Conditions</a>
+                                </label>
+                            </div>
+
+                            <button type="submit" 
+                                    class="w-full bg-blue-900 text-white font-bold py-4 rounded-xl text-lg uppercase tracking-wider hover:bg-blue-800 transition transform hover:scale-[1.02]">
+                                Submit Booking Request
+                            </button>
+
+                            <p class="text-center text-gray-500 text-sm mt-4">
+                                We'll contact you via WhatsApp within 30 minutes to confirm your booking
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Right side - Info -->
+                    <div class="bg-blue-900 text-white p-8 md:p-12">
+                        <h3 class="text-2xl font-bold mb-6">Booking Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Operating Hours</h4>
+                                    <p class="text-blue-200 text-sm">9:00 AM – 8:00 PM daily. Vehicle collection & document submission during operating hours only.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-file-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Required Documents</h4>
+                                    <p class="text-blue-200 text-sm">• Valid Driving License (held min. 2 years)<br>• IC/Passport<br>• Foreigners: International Driving Permit</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-money-bill-wave text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Security Deposit</h4>
+                                    <p class="text-blue-200 text-sm">RM200 deposit required. Refunded within 7 working days if: no damage, clean return, full fuel, accessories present.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-blue-800 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-gas-pump text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Fuel Policy</h4>
+                                    <p class="text-blue-200 text-sm">Vehicle provided FULL, must return FULL. Shortfalls charged at market rate + RM20 service fee.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-blue-800">
+                            <h4 class="font-bold mb-3">Emergency Contacts</h4>
+                            <p class="text-blue-200 mb-2"><i class="fas fa-phone mr-2"></i> 05-6912033 (24/7 Roadside)</p>
+                            <p class="text-blue-200 mb-2"><i class="fas fa-map-marker-alt mr-2"></i> No. 18, Jalan Pahlawan 3, Taman Pahlawan Indah, 08000 Sungai Petani, Kedah, Malaysia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Support Center</span>
+                <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase">Frequently Asked</h2>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-6 reveal">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">What are the age and license requirements?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            • Minimum age: 20 years old<br>
+                            • Maximum age: 65 years old<br>
+                            • Driving license must be held for minimum 2 years<br>
+                            • Valid IC for locals, International Driving Permit + Passport for foreigners<br>
+                            • All documents must be original and not expired
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">What are your operating hours and rental duration?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            • Operating hours: 9:00 AM – 8:00 PM daily<br>
+                            • Vehicle collection & document submission during operating hours only<br>
+                            • Rental calculated on 24-hour basis for daily rentals<br>
+                            • Hourly rentals available (minimum 1 hour)<br>
+                            • Return vehicle at same time next day for daily rentals<br>
+                            • Advised to return 30 minutes earlier to avoid late charges
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">What happens if there's damage or theft?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            • Renter responsible for full repair costs (interior & exterior)<br>
+                            • Theft due to unsecured keys: GPS tracking activated, RM200 deposit forfeited, additional recovery charges may apply<br>
+                            • Immediately notify ZACHS (05-6912033)<br>
+                            • File police report within 24 hours<br>
+                            • Provide photos/video evidence<br>
+                            • Do NOT attempt repairs without authorization
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">What are the strict prohibitions?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            <strong>STRICTLY PROHIBITED:</strong><br>
+                            • Smoking, pets without carrier, durian/strong odors (full deposit forfeited as cleaning fee)<br>
+                            • Off-road driving, sub-renting, commercial transport, towing (immediate termination)<br>
+                            • DUI, racing, illegal activities (police notification & legal prosecution)<br>
+                            • Outside Peninsula Malaysia, restricted areas, border crossing (immediate termination)<br>
+                            • All violations may result in remote vehicle immobilization via GPS
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">What about traffic fines and liability?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            <strong>Traffic Fines:</strong><br>
+                            • Renter bears 100% responsibility for all summonses<br>
+                            • Parking fees, toll charges, speed/red light camera violations<br>
+                            • Settle within 14 days of notification<br>
+                            • Failure may result in legal action and blacklisting<br><br>
+                            <strong>Liability Limitation:</strong><br>
+                            • No liability for personal injury/death from your negligence<br>
+                            • No liability for personal belongings loss due to improper security<br>
+                            • No liability for consequential losses from your errors
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full flex justify-between items-center p-6 text-left" onclick="toggleFAQ(this)">
+                        <span class="text-lg font-bold text-blue-900">Do you provide emergency assistance?</span>
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center faq-icon transition-transform">
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="pb-6 text-gray-600 leading-relaxed">
+                            <strong>24/7 Roadside Assistance:</strong><br>
+                            • Free towing to nearest authorized workshop<br>
+                            • Flat tire assistance<br>
+                            • Battery jump-start<br>
+                            • Key lockout service<br><br>
+                            <strong>Emergency Contacts:</strong><br>
+                            • ZACHS Hotline: 05-6912033<br>
+                            • Operating: 8AM - 10PM (extended for emergencies)<br><br>
+                            Full formal rental agreement detailing all terms will be signed upon vehicle delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms and Conditions Section -->
+    <section id="terms" class="py-24 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs mb-3 block">Legal Policy</span>
+                <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase">Terms & Conditions</h2>
+                <div class="h-1.5 w-24 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="terms-grid reveal">
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-user-check text-blue-600 mr-3"></i> 01. Eligibility
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Minimum age: 20 years, maximum: 65 years. Driving license must be held for minimum 2 years. Valid IC for locals, International Driving Permit + Passport for foreigners. All documents must be original and not expired.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-money-bill-wave text-blue-600 mr-3"></i> 02. Payment & Deposit
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        RM200 security deposit required. Refunded within 7 working days if: no vehicle damage, clean return, full fuel level as per policy, all accessories present, no late return charges.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-clock text-blue-600 mr-3"></i> 03. Rental Duration
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Operating hours: 9:00 AM – 8:00 PM. Vehicle collection during operating hours only. Daily rental calculated on 24-hour basis. Hourly rental available (minimum 1 hour). Return at same time next day. Return 30 minutes earlier to avoid late charges.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i> 04. Insurance Coverage
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        • Basic third-party insurance INCLUDED<br>
+                        • Optional Collision Damage Waiver (CDW) available<br>
+                        • CDW reduces financial liability to excess amount<br>
+                        • Exclusions: Intentional damage, racing, illegal activities<br>
+                        • Personal accident insurance: Not included<br>
+                        • Personal belongings: Not covered<br>
+                        • Comprehensive coverage available upon request
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-tools text-blue-600 mr-3"></i> 05. Warranty Coverage
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        • Comprehensive mechanical warranty INCLUDED<br>
+                        • Replacement vehicle provided for warranty claims<br>
+                        • Repair costs covered for non-negligence faults<br>
+                        • Contact immediately for assistance<br>
+                        • 24/7 roadside assistance available
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-gas-pump text-blue-600 mr-3"></i> 06. Fuel Policy
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Vehicle provided with FULL fuel level, must return with SAME fuel level. Fuel shortfall charged at current market rate + RM20 service fee. No refund for excess fuel.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-traffic-light text-blue-600 mr-3"></i> 07. Traffic Offences
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Renter bears 100% responsibility for all traffic summonses, parking fees, toll charges (SmartTAG/Touch 'n Go), speed camera and red light violations. Settle within 14 days of notification.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i> 08. Liability Limitation
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        No liability for personal injury/death from renter negligence. No liability for personal belongings loss due to improper security. No liability for consequential losses from renter errors.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-ban text-blue-600 mr-3"></i> 09. Vehicle Restrictions
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Strictly prohibited: Smoking/pets/durian (full deposit forfeited), off-road/sub-renting/towing (immediate termination), DUI/racing/illegal activities (police notification). Peninsula Malaysia only.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-car-crash text-blue-600 mr-3"></i> 10. Damage & Theft
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Renter responsible for full repair costs. Theft due to unsecured keys: GPS tracking activated, RM200 deposit forfeited, additional recovery charges. Report immediately to 05-6912033.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-tools text-blue-600 mr-3"></i> 11. Breakdown & Emergency
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        24/7 Roadside Assistance: Free towing, flat tire assistance, battery jump-start, key lockout. Emergency contacts: 05-6912033 (hotline), 8AM-10PM extended for emergencies.
+                    </p>
+                </div>
+
+                <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                    <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-blue-600 mr-3"></i> 12. Rental Termination
+                    </h4>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Upon violation, we will remotely immobilize vehicle via GPS tracking, recover via company-controlled towing, and retain all deposits as recovery and administrative fees.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 text-center reveal">
+                <p class="text-xs text-blue-900 font-bold uppercase tracking-widest italic">
+                    Full formal rental agreement detailing all these terms will be signed upon vehicle delivery and pickup.
+                </p>
             </div>
         </div>
     </section>
@@ -616,36 +2255,30 @@
     <!-- Footer -->
     <footer class="bg-blue-950 text-white py-16">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <div class="text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left mb-12">
+                <div>
                     <div class="text-3xl font-bold mb-4 tracking-tighter">ZACHS</div>
-                    <p class="text-blue-300 text-xs leading-relaxed max-w-xs mx-auto md:mx-0">
-                        ZACHS Car Rental is a registered transport provider in Malaysia, dedicated to offering ethical and reliable vehicle solutions since 2025. We believe in mobility for all.
-                    </p>
+                    <p class="text-blue-300 italic text-sm">"Rent a Ride, Own the Road"</p>
                 </div>
-                <div class="text-center">
-                    <h4 class="font-bold mb-6 text-blue-400 uppercase tracking-widest text-xs">Headquarters</h4>
-                    <p class="text-blue-200 text-sm">Sungai Petani, Kedah, Malaysia</p>
-                    <p class="text-blue-200 text-sm mt-2">Support: 05-6912033</p>
-                    <p class="text-blue-200 text-sm">Email: hello@zachsrent.com.my</p>
+                <div>
+                    <h4 class="font-bold mb-6 text-blue-400 uppercase tracking-widest text-xs">Contact Us</h4>
+                    <p class="text-blue-200 text-sm"><i class="fas fa-phone mr-2"></i> 05-6912033</p>
+                    <p class="text-blue-200 text-sm mt-2"><i class="fas fa-map-marker-alt mr-2"></i> No. 18, Jalan Pahlawan 3, Taman Pahlawan Indah, 08000 Sungai Petani, Kedah, Malaysia.</p>
                 </div>
-                <div class="flex flex-col items-center md:items-end justify-center gap-4">
-                    <div class="flex gap-6 text-2xl">
-                        <a href="#" class="text-blue-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-blue-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-blue-400 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                    <p class="text-[10px] text-blue-600 mt-4">SSM Reg: 202501004321 (ZACHS-MY)</p>
+                <div class="flex justify-center md:justify-end gap-6 text-2xl">
+                    <a href="#" class="text-blue-400 hover:text-white transition transform hover:scale-125"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-blue-400 hover:text-white transition transform hover:scale-125"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-blue-400 hover:text-white transition transform hover:scale-125"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-            <div class="border-t border-blue-900 pt-8 text-center text-[10px] text-blue-400">
-                <p>&copy; 2025 ZACHS Car Rental Malaysia. Licensed under JPJ Mobility Regulations. Terms of Service Apply.</p>
+            <div class="border-t border-blue-900 pt-8 text-center text-xs text-blue-400">
+                <p>&copy; 2025 ZACHS Car Rental. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for animations
+        // Intersection Observer for reveal animations
         const observerOptions = { threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -654,7 +2287,23 @@
         }, observerOptions);
         document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
 
-        // FAQ Toggle
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.querySelector('button[onclick="toggleMobileMenu()"]');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // FAQ toggle function
         function toggleFAQ(button) {
             const item = button.parentElement;
             document.querySelectorAll('.faq-item').forEach(otherItem => {
@@ -662,6 +2311,174 @@
             });
             item.classList.toggle('active');
         }
+
+        // Carousel functions
+        function prevSlide(carousel) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            let activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+            
+            slides[activeIndex].classList.remove('active');
+            dots[activeIndex].classList.remove('active');
+            
+            activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+            
+            slides[activeIndex].classList.add('active');
+            dots[activeIndex].classList.add('active');
+        }
+
+        function nextSlide(carousel) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            let activeIndex = Array.from(slides).findIndex(slide => slide.classList.contains('active'));
+            
+            slides[activeIndex].classList.remove('active');
+            dots[activeIndex].classList.remove('active');
+            
+            activeIndex = (activeIndex + 1) % slides.length;
+            
+            slides[activeIndex].classList.add('active');
+            dots[activeIndex].classList.add('active');
+        }
+
+        function goToSlide(carousel, index) {
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        // Auto-rotate carousels
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('.carousel-container');
+            carousels.forEach(carousel => {
+                setInterval(() => nextSlide(carousel), 5000);
+            });
+        });
+
+        // Testimonial functions
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            currentTestimonial = (index + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            showTestimonial(currentTestimonial + 1);
+        }
+
+        function prevTestimonial() {
+            showTestimonial(currentTestimonial - 1);
+        }
+
+        // Auto-rotate testimonials
+        setInterval(nextTestimonial, 7000);
+
+        // Rental type toggle
+        function toggleRentalType(button, type) {
+            const buttons = button.parentElement.querySelectorAll('.rental-type-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
+            });
+            button.classList.add('active');
+            
+            // Update button colors based on parent card
+            const card = button.closest('.group');
+            if (card.classList.contains('bg-blue-900')) {
+                button.style.backgroundColor = 'white';
+                button.style.color = '#1e3a8a';
+            } else {
+                button.style.backgroundColor = '#1e3a8a';
+                button.style.color = 'white';
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const car = this.querySelector('select').value;
+            const rentalType = this.querySelectorAll('select')[1].value;
+            const pickupDate = this.querySelector('input[type="date"]').value;
+            const pickupTime = this.querySelector('input[type="time"]').value;
+            
+            // Simple validation
+            if (!name || !phone || !email || !car || !rentalType || !pickupDate || !pickupTime) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Create WhatsApp message
+            const message = `New Booking Request from ZACHS Website:%0A%0A` +
+                           `Name: ${name}%0A` +
+                           `Phone: ${phone}%0A` +
+                           `Email: ${email}%0A` +
+                           `Car: ${car}%0A` +
+                           `Rental Type: ${rentalType}%0A` +
+                           `Pickup Date: ${pickupDate}%0A` +
+                           `Pickup Time: ${pickupTime}%0A%0A` +
+                           `Please contact this customer within 30 minutes.`;
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/6056912033?text=${encodeURIComponent(message)}`, '_blank');
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            alert('Thank you! Your booking request has been submitted. We will contact you via WhatsApp shortly.');
+        });
+
+        // Set minimum date for date pickers
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('input[type="date"]').forEach(dateInput => {
+            dateInput.min = today;
+        });
+
+        // Rental duration input handling
+        document.querySelectorAll('.rental-days, .rental-hours').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.classList.contains('rental-days')) {
+                    document.querySelector('.rental-hours').value = '';
+                } else {
+                    document.querySelector('.rental-days').value = '';
+                }
+            });
+        });
+
+        // Update progress line on scroll
+        function updateProgressLine() {
+            const steps = document.querySelectorAll('.booking-step');
+            const progressFill = document.querySelector('.progress-line-fill');
+            if (!progressFill) return;
+
+            let visibleSteps = 0;
+            steps.forEach(step => {
+                const rect = step.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    visibleSteps++;
+                }
+            });
+
+            const width = (visibleSteps / steps.length) * 100;
+            progressFill.style.width = `${width}%`;
+        }
+
+        window.addEventListener('scroll', updateProgressLine);
+        updateProgressLine(); // Initial call
     </script>
 </body>
 </html>
