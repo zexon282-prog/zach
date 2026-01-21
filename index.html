@@ -70,14 +70,13 @@
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
         }
 
-        /* Carousel Styles */
+        /* Carousel Styles - UPDATED for better image fit */
         .carousel-container {
             position: relative;
             width: 100%;
             height: 320px;
             overflow: hidden;
             border-radius: 1rem;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
         
         .carousel-slide {
@@ -87,14 +86,15 @@
         }
         
         .carousel-slide.active {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .carousel-slide img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            padding: 20px;
+            object-fit: cover;
         }
         
         .carousel-controls {
@@ -334,9 +334,8 @@
         .hero-image-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-            padding: 20px;
         }
 
         /* About Us Image Enhancement */
@@ -354,8 +353,7 @@
         .about-image-wrapper img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            padding: 30px;
+            object-fit: cover;
         }
 
         /* Image Quality Enhancement */
@@ -364,17 +362,17 @@
             image-rendering: crisp-edges;
         }
 
-        /* Car Type Background Colors */
+        /* Car Type Background Colors - UPDATED for better image visibility */
         .economy-bg {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
         .sedan-bg {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
 
         .suv-bg {
-            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
         }
 
         .luxury-bg {
@@ -492,6 +490,19 @@
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
         }
+
+        /* Fleet image optimization */
+        .fleet-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide:hover .fleet-image {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -571,7 +582,8 @@
             <div class="lg:w-1/2 flex justify-center relative reveal">
                 <div class="float-anim w-full max-w-4xl">
                     <div class="hero-image-wrapper">
-                        <img src="https://i.ibb.co/rffrN8xL/impressive-car-hero.jpg" 
+                        <!-- UPDATED HERO IMAGE -->
+                        <img src="https://i.ibb.co/HLMFSSD2/photo-2026-01-21-22-22-49.jpg" 
                              alt="Premium Luxury Car Rental - ZACHS Car Rental"
                              loading="eager">
                     </div>
@@ -587,7 +599,8 @@
                 <div class="lg:w-1/2 reveal-left">
                     <div class="relative group">
                         <div class="about-image-wrapper">
-                            <img src="https://i.ibb.co/1GWrtxpp/about-us-premium-car.jpg" 
+                            <!-- UPDATED ABOUT US IMAGE -->
+                            <img src="https://i.ibb.co/mW1DJn4/photo-2026-01-21-22-35-50.jpg" 
                                  alt="Premium Car Rental Service - ZACHS About Us"
                                  loading="lazy">
                         </div>
@@ -1410,13 +1423,25 @@
                 <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
                     <div class="carousel-container economy-bg">
                         <div class="carousel-slide active">
-                            <img src="https://i.ibb.co/YTfTNwK4/economy-1-new.jpg" alt="Perodua Axia - Economy Car" loading="lazy">
+                            <!-- UPDATED ECONOMY IMAGE 1 - Now properly fills container -->
+                            <img src="https://i.ibb.co/3mh9xrz3/photo-2026-01-21-22-42-11.jpg" 
+                                 alt="Perodua Axia - Economy Car" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/fVLL2gkN/economy-2-new.jpg" alt="Perodua Myvi - Economy Car" loading="lazy">
+                            <!-- UPDATED ECONOMY IMAGE 2 -->
+                            <img src="https://i.ibb.co/v4ZC6CrV/photo-2026-01-21-22-42-14.jpg" 
+                                 alt="Perodua Myvi - Economy Car" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/d035ysNQ/economy-3-new.jpg" alt="Proton Iriz - Economy Car" loading="lazy">
+                            <!-- UPDATED ECONOMY IMAGE 3 -->
+                            <img src="https://i.ibb.co/fdfX36rJ/photo-2026-01-21-22-42-17.jpg" 
+                                 alt="Proton Iriz - Economy Car" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
                             <i class="fas fa-chevron-left"></i>
@@ -1468,13 +1493,25 @@
                 <div class="group bg-blue-900 rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-2xl relative md:-translate-y-4 reveal">
                     <div class="carousel-container sedan-bg">
                         <div class="carousel-slide active">
-                            <img src="https://i.ibb.co/Lmh9ngJ/sedan-1-new.jpg" alt="Proton S70 - Sedan" loading="lazy">
+                            <!-- UPDATED SEDAN IMAGE 1 -->
+                            <img src="https://i.ibb.co/nN2ZLf7C/photo-2026-01-21-22-40-52.jpg" 
+                                 alt="Proton S70 - Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/7tZkFPtz/sedan-2-new.jpg" alt="Honda City - Sedan" loading="lazy">
+                            <!-- UPDATED SEDAN IMAGE 2 -->
+                            <img src="https://i.ibb.co/zV69ss6z/photo-2026-01-21-22-40-55.jpg" 
+                                 alt="Honda City - Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/Q3N655TS/sedan-3-new.jpg" alt="Toyota Vios - Sedan" loading="lazy">
+                            <!-- UPDATED SEDAN IMAGE 3 -->
+                            <img src="https://i.ibb.co/fVHxRwVL/photo-2026-01-21-22-40-58.jpg" 
+                                 alt="Toyota Vios - Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
                             <i class="fas fa-chevron-left"></i>
@@ -1526,13 +1563,25 @@
                 <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
                     <div class="carousel-container suv-bg">
                         <div class="carousel-slide active">
-                            <img src="https://i.ibb.co/RT15XSxC/suv-car-1.jpg" alt="Perodua Aruz - SUV" loading="lazy">
+                            <!-- UPDATED SUV IMAGE 1 -->
+                            <img src="https://i.ibb.co/ZzgzRVg0/perodua-aruz-front-angle-low-view-494186.avif" 
+                                 alt="Perodua Aruz - SUV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/Ndh4Jdk8/suv-car-2.jpg" alt="Toyota Fortuner - SUV" loading="lazy">
+                            <!-- UPDATED SUV IMAGE 2 -->
+                            <img src="https://i.ibb.co/B5yhD3pj/photo-2026-01-21-22-38-34.jpg" 
+                                 alt="Toyota Fortuner - SUV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/3YQ6BcG6/suv-car-3.jpg" alt="Honda BR-V - SUV" loading="lazy">
+                            <!-- UPDATED SUV IMAGE 3 -->
+                            <img src="https://i.ibb.co/v69FdWkg/photo-2026-01-21-22-38-42.jpg" 
+                                 alt="Honda BR-V - SUV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
                             <i class="fas fa-chevron-left"></i>
@@ -1584,13 +1633,25 @@
                 <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
                     <div class="carousel-container luxury-bg">
                         <div class="carousel-slide active">
-                            <img src="https://i.ibb.co/7tggsFDQ/luxury-sedan-1-new.jpg" alt="Mercedes Benz C200 - Luxury Sedan" loading="lazy">
+                            <!-- UPDATED LUXURY SEDAN IMAGE 1 -->
+                            <img src="https://i.ibb.co/DfNtYPqx/photo-2026-01-21-22-37-00.jpg" 
+                                 alt="Mercedes Benz C200 - Luxury Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/WWmLrGmt/luxury-sedan-2-new.jpg" alt="BMW 320i - Luxury Sedan" loading="lazy">
+                            <!-- UPDATED LUXURY SEDAN IMAGE 2 -->
+                            <img src="https://i.ibb.co/GvsRtgVS/photo-2026-01-21-22-37-07.jpg" 
+                                 alt="BMW 320i - Luxury Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/hFRr5KTg/luxury-sedan-3-new.jpg" alt="Lexus ES250 - Luxury Sedan" loading="lazy">
+                            <!-- UPDATED LUXURY SEDAN IMAGE 3 -->
+                            <img src="https://i.ibb.co/zhPsQ01v/photo-2026-01-21-22-37-14.jpg" 
+                                 alt="Lexus ES250 - Luxury Sedan" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
                             <i class="fas fa-chevron-left"></i>
@@ -1642,13 +1703,25 @@
                 <div class="group bg-gray-50 rounded-[2.5rem] overflow-hidden border border-gray-100 transition-all duration-500 hover:shadow-2xl reveal">
                     <div class="carousel-container mpv-bg">
                         <div class="carousel-slide active">
-                            <img src="https://i.ibb.co/qLVq8CZQ/mpv-1-new.jpg" alt="Toyota Vellfire - MPV" loading="lazy">
+                            <!-- UPDATED MPV IMAGE 1 -->
+                            <img src="https://i.ibb.co/hJ3kZCxG/photo-2026-01-21-22-43-02.jpg" 
+                                 alt="Toyota Vellfire - MPV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/Kjr8r9RH/mpv-2-new.jpg" alt="Nissan Serena - MPV" loading="lazy">
+                            <!-- UPDATED MPV IMAGE 2 -->
+                            <img src="https://i.ibb.co/gcX9zgC/photo-2026-01-21-22-43-04.jpg" 
+                                 alt="Nissan Serena - MPV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="https://i.ibb.co/DDQr2GLb/mpv-3-new.jpg" alt="Honda Odyssey - MPV" loading="lazy">
+                            <!-- UPDATED MPV IMAGE 3 -->
+                            <img src="https://i.ibb.co/3mb4zNDF/photo-2026-01-21-22-43-06.jpg" 
+                                 alt="Honda Odyssey - MPV" 
+                                 class="fleet-image"
+                                 loading="lazy">
                         </div>
                         <div class="carousel-nav carousel-prev" onclick="prevSlide(this.parentElement)">
                             <i class="fas fa-chevron-left"></i>
@@ -2115,7 +2188,7 @@
         </div>
     </section>
 
-    <!-- Terms and Conditions Section -->
+    <!-- UPDATED Terms and Conditions Section -->
     <section id="terms" class="py-24 bg-white border-t border-gray-100">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 reveal">
@@ -2130,98 +2203,128 @@
                         <i class="fas fa-user-check text-blue-600 mr-3"></i> 01. Eligibility
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Minimum age: 20 years, maximum: 65 years. Driving license must be held for minimum 2 years. Valid IC for locals, International Driving Permit + Passport for foreigners. All documents must be original and not expired.
+                        • Minimum age requirement is 20 years old<br>
+                        • Maximum age requirement is 65 years old<br>
+                        • Driving license must be held for a minimum 2 years<br>
+                        • Probationary (P) licences are not accepted
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-money-bill-wave text-blue-600 mr-3"></i> 02. Payment & Deposit
+                        <i class="fas fa-file-alt text-blue-600 mr-3"></i> 02. Document Required
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        RM200 security deposit required. Refunded within 7 working days if: no vehicle damage, clean return, full fuel level as per policy, all accessories present, no late return charges.
+                        • Valid driving licence and identity card (IC) for local customers<br>
+                        • Valid International Driving Permit (IDP) and passport for foreign customers<br>
+                        • All documents must be presented in original form and not expired<br>
+                        • Our company reserves the right to reject the rental if documents are incomplete or invalid
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-clock text-blue-600 mr-3"></i> 03. Rental Duration
+                        <i class="fas fa-money-bill-wave text-blue-600 mr-3"></i> 03. Payment
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Operating hours: 9:00 AM – 8:00 PM. Vehicle collection during operating hours only. Daily rental calculated on 24-hour basis. Hourly rental available (minimum 1 hour). Return at same time next day. Return 30 minutes earlier to avoid late charges.
+                        • Renter must pay a RM200 security deposit<br>
+                        • Deposit refunded within 7 working days after vehicle return under these conditions:<br>
+                        &nbsp;&nbsp;✓ No damage to vehicle<br>
+                        &nbsp;&nbsp;✓ Vehicle returned clean<br>
+                        &nbsp;&nbsp;✓ Full fuel level as per policy<br>
+                        &nbsp;&nbsp;✓ All accessories present<br>
+                        &nbsp;&nbsp;✓ No late return charges<br>
+                        • Full formal rental agreement detailing all these terms will be signed upon vehicle delivery and pickup
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i> 04. Insurance Coverage
+                        <i class="fas fa-gas-pump text-blue-600 mr-3"></i> 04. Fuel Policy
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        • Basic third-party insurance INCLUDED<br>
-                        • Optional Collision Damage Waiver (CDW) available<br>
-                        • CDW reduces financial liability to excess amount<br>
-                        • Exclusions: Intentional damage, racing, illegal activities<br>
-                        • Personal accident insurance: Not included<br>
-                        • Personal belongings: Not covered<br>
-                        • Comprehensive coverage available upon request
+                        • We provide vehicle with FULL fuel level<br>
+                        • Renter must return with SAME fuel level<br>
+                        • Fuel shortfall charged at current market rate + RM20 service fee
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-tools text-blue-600 mr-3"></i> 05. Warranty Coverage
+                        <i class="fas fa-clock text-blue-600 mr-3"></i> 05. Rental Duration
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        • Comprehensive mechanical warranty INCLUDED<br>
-                        • Replacement vehicle provided for warranty claims<br>
-                        • Repair costs covered for non-negligence faults<br>
-                        • Contact immediately for assistance<br>
-                        • 24/7 roadside assistance available
+                        • Operating hours: 9:00 am - 8:00 pm<br>
+                        • Document submission verification procedures and signature, and vehicle collection must be done during operating hours<br>
+                        • Rental duration is calculated on a 24-hour basis for daily rental (begin at the time the vehicle is collected)<br>
+                        • Vehicle must be returned at the same time the next day<br>
+                        • Customers are advised to return the vehicle 30 minutes earlier to avoid late charges<br>
+                        • For early return, there is no refund for unused hours<br>
+                        • For late return, the charges will be deducted from the security deposit based on hourly rental rate
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-gas-pump text-blue-600 mr-3"></i> 06. Fuel Policy
+                        <i class="fas fa-traffic-light text-blue-600 mr-3"></i> 06. Traffic Offences & Fines
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Vehicle provided with FULL fuel level, must return with SAME fuel level. Fuel shortfall charged at current market rate + RM20 service fee. No refund for excess fuel.
+                        • Renter bears 100% responsibility for all traffic summonses<br>
+                        • Includes parking fees and fines, toll charges (SmartTAG/Touch 'n Go), speed camera violations, red light camera offenses<br>
+                        • Renter must settle fines within 14 days of notification<br>
+                        • Failure to pay may result in legal action and blacklisting
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-traffic-light text-blue-600 mr-3"></i> 07. Traffic Offences
+                        <i class="fas fa-balance-scale text-blue-600 mr-3"></i> 07. Liability Limitation
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Renter bears 100% responsibility for all traffic summonses, parking fees, toll charges (SmartTAG/Touch 'n Go), speed camera and red light violations. Settle within 14 days of notification.
+                        • No liability for personal injury or death resulting from your own negligence, actions, or misuse of the vehicle<br>
+                        • No liability for loss of personal belongings due to your own failure to secure them properly<br>
+                        • No liability for any consequential losses (financial, travel delays, missed appointments) caused by your own errors or decisions
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i> 08. Liability Limitation
+                        <i class="fas fa-ban text-blue-600 mr-3"></i> 08. Vehicle Use Restrictions
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        No liability for personal injury/death from renter negligence. No liability for personal belongings loss due to improper security. No liability for consequential losses from renter errors.
+                        <strong>We STRICTLY PROHIBITED:</strong><br>
+                        • Smoking inside vehicle, transporting pets without carrier, or carrying durian/food with strong odors (result in forfeiture of the full deposit as cleaning fee)<br>
+                        • Off-road driving, sub-renting to third parties, commercial passenger transport, or towing other vehicles (result in immediate rental termination)<br>
+                        • Driving under influence of alcohol/drugs, racing or speed testing, or engaging in illegal activities (result in immediate termination of rental, police notification, and legal prosecution)<br>
+                        • Geographical Restrictions: Operating vehicle outside Peninsula Malaysia, entering restricted/closed areas, attempting border crossing (result in immediate rental termination)
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-ban text-blue-600 mr-3"></i> 09. Vehicle Restrictions
+                        <i class="fas fa-exclamation-triangle text-blue-600 mr-3"></i> 09. Rental Termination
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Strictly prohibited: Smoking/pets/durian (full deposit forfeited), off-road/sub-renting/towing (immediate termination), DUI/racing/illegal activities (police notification). Peninsula Malaysia only.
+                        Upon violation, we will:<br>
+                        • Remotely immobilize the vehicle via GPS tracking<br>
+                        • Recover it via company-controlled towing<br>
+                        • Retain all deposits as recovery and administrative fees
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-car-crash text-blue-600 mr-3"></i> 10. Damage & Theft
+                        <i class="fas fa-car-crash text-blue-600 mr-3"></i> 10. Damage, Loss & Theft
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Renter responsible for full repair costs. Theft due to unsecured keys: GPS tracking activated, RM200 deposit forfeited, additional recovery charges. Report immediately to 05-6912033.
+                        • Renter responsible for full cost of repairs for damages (interior and exterior damage)<br>
+                        • Loss of vehicle accessories (conditions will be checked after returning vehicle)<br>
+                        • Theft of vehicle due to unsecured keys (GPS tracking activated, full deposit forfeiture (RM200), and potential additional recovery charges)<br><br>
+                        <strong>Reporting Procedure:</strong><br>
+                        • Immediately notify ZACHS (05-6912033)<br>
+                        • File police report within 24 hours<br>
+                        • Provide photos/video evidence<br>
+                        • Do NOT attempt repairs without authorization
                     </p>
                 </div>
 
@@ -2230,16 +2333,36 @@
                         <i class="fas fa-tools text-blue-600 mr-3"></i> 11. Breakdown & Emergency
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        24/7 Roadside Assistance: Free towing, flat tire assistance, battery jump-start, key lockout. Emergency contacts: 05-6912033 (hotline), 8AM-10PM extended for emergencies.
+                        • We offer 24/7 Roadside Assistance including:<br>
+                        &nbsp;&nbsp;✓ Free towing to nearest authorized workshop<br>
+                        &nbsp;&nbsp;✓ Flat tire assistance<br>
+                        &nbsp;&nbsp;✓ Battery jump-start<br>
+                        &nbsp;&nbsp;✓ Key lockout service<br><br>
+                        <strong>Emergency Contacts:</strong><br>
+                        • ZACHS Hotline: 05-6912033<br>
+                        • WhatsApp: 012-3456789<br>
+                        • Operating hours: 8AM-10PM (extended for emergencies)
                     </p>
                 </div>
 
                 <div class="p-8 bg-gray-50 rounded-3xl border border-gray-100">
                     <h4 class="text-xl font-bold text-blue-900 mb-4 flex items-center">
-                        <i class="fas fa-exclamation-triangle text-blue-600 mr-3"></i> 12. Rental Termination
+                        <i class="fas fa-shield-alt text-blue-600 mr-3"></i> 12. Insurance & Warranty
                     </h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        Upon violation, we will remotely immobilize vehicle via GPS tracking, recover via company-controlled towing, and retain all deposits as recovery and administrative fees.
+                        <strong>Insurance Coverage:</strong><br>
+                        • Basic third-party insurance INCLUDED<br>
+                        • Optional Collision Damage Waiver (CDW) available<br>
+                        • CDW reduces financial liability to excess amount<br>
+                        • Exclusions: Intentional damage, racing, illegal activities<br>
+                        • Personal accident insurance: Not included<br>
+                        • Personal belongings: Not covered<br>
+                        • Comprehensive coverage available upon request<br><br>
+                        <strong>Warranty Coverage:</strong><br>
+                        • Comprehensive mechanical warranty INCLUDED<br>
+                        • Replacement vehicle provided for warranty claims<br>
+                        • Repair costs covered for non-negligence faults<br>
+                        • Contact immediately for assistance
                     </p>
                 </div>
             </div>
